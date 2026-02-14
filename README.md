@@ -1,4 +1,4 @@
-# PatientDash #
+# MediDash #
 **Timeline:** 2 months (Weekdays, 1-2 hours/day)  
 **Project:** Simple patient management dashboard for hospital staff.
 
@@ -8,7 +8,7 @@
 
 ## Project Overview ##
 
-**PatientDash** is a simple, single-page dashboard to manage patients.
+**MediDash** is a simple, single-page dashboard to manage patients.
 - Patient list (table)
 - Overview (Sticky sidebar)
 - Click a row -> Detail (Modal)
@@ -73,13 +73,8 @@
 #### Week 8: Finalization ####
 - Organize Storybook
 - Write README
-- Plan CRUD (Add/Edit/Delete)
-- Document components & hooks structure
-
-#### Additional Functions ####
-- Search bar on the header. 
-- Ordering the table with clicking on the table header cells.
-- Filtering with clicking on the Sidebar's cards. 
+- CRUD (Add/Edit/Delete)
+- Documentation
 
 ## Demo ## 
 [Demo in Vercel](https://medidash-steel.vercel.app/)
