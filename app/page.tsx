@@ -3,6 +3,7 @@ import Heading from "@/components/ui/Heading";
 import Paragraph from "@/components/ui/Paragraph";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import StatusBadge from "@/components/ui/StatusBadge";
 
 export default function Home() {
   return (
@@ -36,10 +37,16 @@ export default function Home() {
             <tr><th>Patient ID</th><th>Name</th><th>Age</th><th>Status</th><th>Next Appointment</th><th>Condition</th></tr>
           </thead>
           <tbody>
-            <tr><td>PT-0001</td><td><b>Axe Gothart Wingate</b></td><td>84</td><td><span className="inline-flex px-3 py-1 text-sm font-medium rounded-full  bg-(--color-bg-status-in_consult) text-(--color-text-status-in_consult)">In Consult</span></td><td>2027-02-06</td><td>Flu</td></tr>
+            <tr><td>PT-0001</td><td><b>Axe Gothart Wingate</b></td><td>84</td><td>
+              <StatusBadge
+                status="in_consult"
+              />
+            </td><td>2027-02-06</td><td>Flu</td></tr>
             
             <tr>
-              <td>PT-0003</td><td><b>Francoise Devlen Lethebridge</b></td><td>98</td><td><span className="inline-flex px-3 py-1 text-sm font-medium rounded-full  bg-(--color-bg-status-waiting) text-(--color-text-status-waiting)">Waiting</span></td><td>2026-12-11</td><td>Heart Disease</td></tr>
+              <td>PT-0003</td><td><b>Francoise Devlen Lethebridge</b></td><td>98</td><td><StatusBadge
+                status="done"
+              /></td><td>2026-12-11</td><td>Heart Disease</td></tr>
               
            </tbody></table>
         <Footer />
