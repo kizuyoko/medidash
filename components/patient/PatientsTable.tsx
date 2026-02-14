@@ -4,6 +4,7 @@ import PatientsTableBody from "./PatientsTableBody";
 import PatientsTableHead from "./PatientsTableHead";
 import Modal from "../ui/Modal";
 import type { Patient, Patients } from "../../types/patient";
+import PatientDetailModal from "./PatientDetailModal";
 
 const PatientsTable = ({ patients } : { patients: Patients }) => {
     const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
@@ -26,7 +27,7 @@ const PatientsTable = ({ patients } : { patients: Patients }) => {
                         isOpen={true} 
                         onClose={() => setSelectedPatient(null)}
                     >
-                            <h1>jjj</h1>
+                        <PatientDetailModal patient={selectedPatient} />
                     </Modal>
                 )
             }
