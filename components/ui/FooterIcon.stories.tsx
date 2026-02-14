@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import FooterIcon from './FooterIcon';
-import gitHubImage from './github.svg';
-import linkedInImage from './linkedin.svg';
 import '@/app/globals.css';
 
 const meta: Meta<typeof FooterIcon> = {
