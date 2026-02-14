@@ -1,7 +1,12 @@
 import PatientsTableRow from "./PatientsTableRow";
-import type { Patients } from "../../types/patient";
+import type { Patient, Patients } from "../../types/patient";
 
-const PatientTableBody = ({ patients } : { patients: Patients }) => {
+type Props = {
+  patients: Patients;
+  onClick: (patient: Patient) => void;
+};
+
+const PatientTableBody = ({ patients, onClick }: Props) => {
     return (
         <tbody>
             {
@@ -9,6 +14,7 @@ const PatientTableBody = ({ patients } : { patients: Patients }) => {
                 <PatientsTableRow 
                   key={patient.id} 
                   patient={patient} 
+                  onClick={() => onClick(patient)}
                 />
               ))
             }

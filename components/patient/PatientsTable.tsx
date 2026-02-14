@@ -1,13 +1,36 @@
+"use client";
+import { useState } from "react";
 import PatientsTableBody from "./PatientsTableBody";
 import PatientsTableHead from "./PatientsTableHead";
-import type { Patients } from "../../types/patient";
+import Modal from "../ui/Modal";
+import type { Patient, Patients } from "../../types/patient";
 
 const PatientsTable = ({ patients } : { patients: Patients }) => {
+    const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
+    const setSelectedPatientHandlar = (patient: Patient) => {
+        setSelectedPatient(patient);
+    }
+
     return (
-        <table>
-          <PatientsTableHead />
-          <PatientsTableBody patients={patients} />
-        </table>
+        <>
+            <table>
+            <PatientsTableHead />
+            <PatientsTableBody 
+                patients={patients}
+                onClick={setSelectedPatientHandlar} 
+            />
+            </table>
+            {
+                selectedPatient && (
+                    <Modal
+                        isOpen={true} 
+                        onClose={() => setSelectedPatient(null)}
+                    >
+                            <h1>jjj</h1>
+                    </Modal>
+                )
+            }
+        </>
     )
 }
 
