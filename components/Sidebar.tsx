@@ -11,7 +11,7 @@ const Sidebar = ({ patients } : { patients: Patients })=> {
 
     return (
         <aside>
-            <Heading level={1}>PatientDash</Heading>
+            <Heading level={1}>MediDash</Heading>
             <Paragraph>Patient Management System</Paragraph>
             <div className="overview">
                 <SidebarCard 
