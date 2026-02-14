@@ -4,6 +4,7 @@ import Paragraph from "@/components/ui/Paragraph";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StatusBadge from "@/components/ui/StatusBadge";
+import SidebarCard from "@/components/ui/SidebarCard";
 
 export default function Home() {
   return (
@@ -12,22 +13,25 @@ export default function Home() {
         <Heading level={1}>PatientDash</Heading>
         <Paragraph>Patient Management System</Paragraph>
         <div className="overview">
-          <div className="card ">
-            <div className="card-label" >Total Patients</div>
-            <div className="card-strong">17</div>
-          </div>
-          <div className="card ">
-            <div className="card-label">Waiting</div>
-            <div className="card-strong" >6</div>
-          </div>
-          <div className="card">
-            <div className="card-label">In Consult</div>
-            <div className="card-strong">8</div>
-          </div>
-          <div className="card">
-            <div className="card-label">Done</div>
-            <div className="card-strong" >3</div>
-          </div>
+          <SidebarCard 
+              label="Total Patients"
+              number={111}
+          />
+          <SidebarCard 
+              variant="waiting"
+              label="Waiting"
+              number={222}
+          />
+          <SidebarCard 
+              variant="in_consult"
+              label="In Consult"
+              number={333}
+          />
+          <SidebarCard 
+              variant="done"
+              label="Done"
+              number={444}
+          />
         </div>
       </aside>
       <main>
