@@ -1,8 +1,58 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Body */
+  --background: theme(colors.gray.50);
+  --foreground: theme(colors.gray.900);
+
+/* Status */
+  /* Total */
+  --color-title-total: theme(colors.blue.700);
+  --color-text-total: theme(colors.blue.600);
+  --color-bg-total: theme(colors.blue.50);
+  --color-border-total: theme(colors.blue.200);
+  /* Waiting */
+  --color-title-waiting: theme(colors.amber.700);
+  --color-text-waiting: theme(colors.amber.600);
+  --color-bg-waiting: theme(colors.amber.50);
+  --color-border-waiting: theme(colors.amber.300);
+  --color-bg-status-waiting: theme(colors.amber.100);
+  --color-text-status-waiting: theme(colors.amber.800);
+  /* In Consult */
+  --color-title-in_consult: theme(colors.purple.700);
+  --color-text-in_consult: theme(colors.purple.600);
+  --color-bg-in_consult: theme(colors.purple.50);
+  --color-border-in_consult: theme(colors.purple.200);
+  --color-bg-status-in_consult: theme(colors.purple.100);
+  --color-text-status-in_consult: theme(colors.purple.800);
+  /* Done */
+  --color-title-done: theme(colors.green.700);
+  --color-text-done: theme(colors.green.600);
+  --color-bg-done: theme(colors.green.50);
+  --color-border-done: theme(colors.green.300);
+  --color-bg-status-done: theme(colors.green.100);
+  --color-text-status-done: theme(colors.green.800);
+  /* Cancelled */
+  --color-title-cancelled: theme(colors.gray.600);
+  --color-text-cancelled: theme(colors.gray.600);
+  --color-bg-cancelled: theme(colors.gray.50);
+  --color-border-cancelled: theme(colors.gray.200);
+  --color-bg-status-cancelled: theme(colors.gray.100);
+  --color-text-status-cancelled: theme(colors.gray.700);
+
+/* Button color */
+    /* Primary */
+  --color-btn-primary: theme(colors.pink.600);
+  --color-btn-primary-hover: theme(colors.pink.800);
+  --color-btn-primary-text: theme(colors.white);
+  /* Secondary */
+  --color-btn-secondary: theme(colors.teal.600);
+  --color-btn-secondary-hover: theme(colors.teal.800);
+  --color-btn-secondary-text: theme(colors.white);
+  /* Disabled */
+  --color-btn-disabled: theme(colors.gray.300);
+  --color-btn-disabled-text: theme(colors.gray.400);
+
 }
 
 @theme inline {
@@ -20,7 +70,103 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply font-sans bg-(--background) text-(--foreground);
+}
+aside {
+    @apply bg-white p-4 lg:p-8 border-gray-200  border-b lg:border-r lg:border-b-0 lg:max-w-sm;
+}
+
+main {
+    @apply flex-1  p-4 lg:p-8;
+}
+
+@layer components {
+/* Aside Overview */    
+    .overview {
+        @apply mt-4 flex lg:flex-col gap-4;
+    }
+
+    .card {
+        @apply rounded-lg p-4 border;
+    }
+    .card-label {
+        @apply text-sm mb-1;
+    }
+    .card-text {
+        @apply m-0;
+    }
+    .card-semibold {
+        @apply text-lg font-semibold; 
+    }
+    .card-strong {
+        @apply text-3xl font-bold;
+    }
+
+/* Modal */
+    .modal-root {
+        @apply fixed inset-0 z-50 flex items-center justify-center;
+    }
+    .modal-overlay {
+        @apply absolute inset-0 bg-black/60;
+    }
+
+    .modal-box {
+        @apply relative z-10 bg-white rounded-lg shadow-lg max-w-full min-w-2xs sm:min-w-sm m-6 max-h-[80vh] flex flex-col p-6;
+    }
+
+    .patient-modal .card {
+        @apply bg-gray-50 border-0;
+    }
+    .patient-modal section {
+        @apply mt-6;
+    }
+    .patient-modal section h3 {
+        @apply pb-2
+    }
+
+    .basic-info-wrap{
+        @apply grid grid-cols-2 sm:grid-cols-4 gap-4;
+    }
+
+
+
+
+    /* Table */
+    table {
+        @apply border-separate border-spacing-0 rounded-lg shadow-sm border border-gray-300 overflow-hidden min-w-full mt-4;
+    }
+    table thead {
+        @apply bg-gray-200 border-b border-gray-400;
+    }
+    table thead th {
+        @apply px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider;
+    }
+    table tbody {
+        @apply bg-white divide-y divide-gray-200;
+    }
+    table tbody tr {
+        @apply hover:bg-gray-100 transition-colors cursor-pointer;
+    }
+    
+    table tbody tr:nth-child(odd) {
+        @apply bg-gray-50;
+    }
+    table tbody td {
+        @apply border-t border-gray-200 px-6 py-4 whitespace-nowrap text-sm;
+    }
+    table tbody td b {
+        @apply font-medium;
+    }
+
+    /* Footer */
+    footer {
+        @apply mt-4 text-center text-sm text-gray-500;
+    }
+
+    footer ul {
+        @apply list-none p-0 m-0 flex justify-center gap-2;
+    }
+    footer ul li {
+        @apply inline-block;
+    }
 }
