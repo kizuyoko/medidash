@@ -1,39 +1,16 @@
-import Image from "next/image";
 import Heading from "@/components/ui/Heading";
 import Paragraph from "@/components/ui/Paragraph";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StatusBadge from "@/components/ui/StatusBadge";
 import SidebarCard from "@/components/ui/SidebarCard";
+import Sidebar from "@/components/Sidebar";
+import { patients } from "@/data/fake_patients";
 
 export default function Home() {
   return (
     <section className="body">
-      <aside>
-        <Heading level={1}>PatientDash</Heading>
-        <Paragraph>Patient Management System</Paragraph>
-        <div className="overview">
-          <SidebarCard 
-              label="Total Patients"
-              number={111}
-          />
-          <SidebarCard 
-              variant="waiting"
-              label="Waiting"
-              number={222}
-          />
-          <SidebarCard 
-              variant="in_consult"
-              label="In Consult"
-              number={333}
-          />
-          <SidebarCard 
-              variant="done"
-              label="Done"
-              number={444}
-          />
-        </div>
-      </aside>
+      <Sidebar patients={patients} />
       <main>
         <Header />
         <table>
