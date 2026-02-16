@@ -3,6 +3,7 @@ import Heading from "./ui/Heading";
 import Paragraph from "./ui/Paragraph";
 import Button from "./ui/Button";
 import Modal from "./ui/Modal";
+import SearchBar from "./SearchBar";
 
 import { useState } from "react";
 
@@ -16,7 +17,10 @@ const Header = () => {
               <Heading>Patient List</Heading>
               <Paragraph>Overview of all registered patients</Paragraph>
             </div>
-            <Button onClick={() => setOpen(true)}>New</Button>
+            <div className="flex items-center space-x-2">
+                <SearchBar />
+                <Button onClick={() => setOpen(true)}>New</Button>
+            </div>
           </div>
           <Modal
                 isOpen={open}

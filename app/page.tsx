@@ -12,6 +12,7 @@ import PatientDetailModal from "@/components/patient/PatientDetailModal";
 
 export default function Home() {
   const [selectedPatient, setSelectedPatient] = useState<DisplayPatient | null>(null);
+  const [searchText, setSearchText] = useState("");
 
   const setSelectedPatientHandlar = (patient: DisplayPatient) => {
       setSelectedPatient(patient);
