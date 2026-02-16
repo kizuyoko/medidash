@@ -13,7 +13,11 @@
 - Overview (Sticky sidebar)
 - Click a row -> Detail (Modal)
 - Click a column of the header row -> order
-- Future: CRUD (Create / Edit / Delete)
+- Search bar
+- Pagination
+- StatsPanel 
+- AlertsList 
+- CRUD (Create / Edit / Delete)
 - Technology: React, Next.js, TypeScript, Hooks, Storybook, TailwindCSS, Fake Patients ([API](https://www.mockaroo.com/))
 
 ## Weekly Plan (8 weeks) ##
@@ -45,6 +49,7 @@
 - Search bar on the header
 - Filtering with clicking on the Sidebar's cards
 - Ordering the table with clicking on the table header cells
+- Pagenation
 - Hook: useState, useMemo
 - Storybook: filtered / sorted states
 
