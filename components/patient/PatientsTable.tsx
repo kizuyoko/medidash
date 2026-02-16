@@ -1,4 +1,3 @@
-"use client";
 import PatientsTableBody from "./PatientsTableBody";
 import PatientsTableHead from "./PatientsTableHead";
 import type { DisplayPatient, DisplayPatients } from "../../types/patient";
