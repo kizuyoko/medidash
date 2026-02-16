@@ -1,6 +1,5 @@
 import StatusBadge from "../ui/StatusBadge";
 import type { DisplayPatient } from "../../types/patient";
-import { generatePatientId, generateFullname, calculateAge } from '../../utilities/data';
 
 type Props = {
   patient: DisplayPatient;
@@ -8,16 +7,12 @@ type Props = {
 };
 
 const PatientsTableRow = ({ patient, onClick }: Props) => {
-    const patientId = generatePatientId(patient.id);
-    const fullName = generateFullname(patient.first_name, patient.last_name, patient.middle_name);
-    const age = calculateAge(patient.birthday);
-
     return (
         <>
             <tr onClick={onClick}>
-                <td>{patientId}</td>
-                <td><b>{fullName}</b></td>
-                <td>{age}</td>
+                <td>{patient.patientId}</td>
+                <td><b>{patient.fullName}</b></td>
+                <td>{patient.age}</td>
                 <td>
                     <StatusBadge status={patient.status} />
                 </td>
