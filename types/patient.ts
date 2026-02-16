@@ -23,3 +23,12 @@ export type Patient = {
 };
 
 export type Patients = Patient[];
+
+export type DisplayPatient = Patient & {
+  patientId: string;
+  fullName: string;
+  age: number;
+  ageText: string;
+};
+
+export type DisplayPatients = DisplayPatient[];

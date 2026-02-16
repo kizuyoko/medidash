@@ -33,6 +33,16 @@ export const calculateAge = (birthday: string): number => {
     return age;
 }
 
+export const generateAgeText = (birthday: string): string => {
+    const age = calculateAge(birthday);
+
+    const ageText = age === 0 
+        ? 'Less than 1 year' 
+        : `${age} year${age === 1 ? '' : 's'}`;
+        
+    return ageText;
+}
+
 export const generateStatusLabels: Record<PatientStatus, string> = {
     waiting: "Waiting",
     in_consult: "In Consult",

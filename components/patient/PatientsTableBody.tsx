@@ -1,9 +1,9 @@
 import PatientsTableRow from "./PatientsTableRow";
-import type { Patient, Patients } from "../../types/patient";
+import type { DisplayPatient, DisplayPatients } from "../../types/patient";
 
 type Props = {
-  patients: Patients;
-  onClick: (patient: Patient) => void;
+  patients: DisplayPatients;
+  onClick: (patient: DisplayPatient) => void;
 };
 
 const PatientTableBody = ({ patients, onClick }: Props) => {

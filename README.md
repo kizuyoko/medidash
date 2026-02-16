@@ -30,7 +30,7 @@
 - Tech stack
 
 #### Week 1: Setup & Layout ####
-- Create React project with TypeScript
+- Create React/TypeScript/NextJS project with
 - Install TailwindCSS
 - Install Storybook
 - Initialize Git repository
@@ -38,31 +38,32 @@
 - Display placeholder components
 
 #### Week 2: UI Components & Storybook ####
+- Hook: useState for local state
 - Type Patient and Patients
 - Start fake with Mockaroo
 - Card, Table, Badge, Button
 - Write Storybook stories
-- Hook: useState for local state
 - Display table and modal with fake data
 
 #### Week 3: Filtering & Sorting ####
+- Hook: useState, useMemo
 - Search bar on the header
 - Filtering with clicking on the Sidebar's cards
 - Ordering the table with clicking on the table header cells
 - Pagenation
-- Hook: useState, useMemo
+
 - Storybook: filtered / sorted states
 
 #### Week 4: Derived Data UI & Callbacks ####
+- Hook: useMemo, useCallback
 - StatsPanel (counts by status, gender, blood type)
 - AlertsList (patients filtered by simple rules)
-- Hook: useMemo, useCallback
 - Storybook: StatsPanel, AlertsList
 
 #### Week 5: API Integration ####
+- Hook: useEffect, useState
 - Fetch data from Mockaroo
 - Handle loading / error states
-- Hook: useEffect, useState
 
 #### Week 6: Custom Hooks ####
 - usePatients（API + filtering + sorting + loading）

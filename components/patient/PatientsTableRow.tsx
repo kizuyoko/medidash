@@ -1,9 +1,9 @@
 import StatusBadge from "../ui/StatusBadge";
-import type { Patient } from "../../types/patient";
+import type { DisplayPatient } from "../../types/patient";
 import { generatePatientId, generateFullname, calculateAge } from '../../utilities/data';
 
 type Props = {
-  patient: Patient;
+  patient: DisplayPatient;
   onClick: () => void;
 };
 
