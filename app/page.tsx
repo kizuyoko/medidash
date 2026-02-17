@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
 import { patients as rawPatients } from "@/data/fake_patients";
 import PatientsTable from "@/components/patient/PatientsTable";
-import type { DisplayPatient } from "@/types/patient";
+import type { DisplayPatient, DisplayPatients } from "@/types/patient";
 import { generatePatientId, generateFullname, calculateAge, generateAgeText } from "@/utilities/data";
 import Modal from "@/components/ui/Modal";
 import PatientDetailModal from "@/components/patient/PatientDetailModal";
@@ -18,7 +18,7 @@ export default function Home() {
       setSelectedPatient(patient);
   }
 
-  const displayPatients:  DisplayPatient[] = useMemo(() => {
+  const displayPatients:  DisplayPatients = useMemo(() => {
     return [...rawPatients].map((patient) => ({
       ...patient, 
       patientId: generatePatientId(patient.id),
@@ -28,24 +28,37 @@ export default function Home() {
     })); 
   }, [])
 
+  const filteredPatients: DisplayPatients = useMemo(() => {
+    const keyword = searchText.trim().toLocaleLowerCase();
+
+    if (!keyword) return displayPatients;
+
+    return displayPatients.filter((patient) =>
+      patient.fullName.toLowerCase().includes(keyword)
+    );
+  }, [displayPatients, searchText]);
+
   return (
     <section className="body">
       <Sidebar patients={displayPatients} />
       <main>
-        <Header />
+        <Header 
+          searchText={searchText}
+          onSearchChange={setSearchText}
+        />
         <PatientsTable  
           onClick={setSelectedPatientHandlar}
-          patients={displayPatients} />
+          patients={filteredPatients} />
         {
-                selectedPatient && (
-                    <Modal
-                        isOpen={true} 
-                        onClose={() => setSelectedPatient(null)}
-                    >
-                        <PatientDetailModal patient={selectedPatient} />
-                    </Modal>
-                )
-            }
+            selectedPatient && (
+                <Modal
+                    isOpen={true} 
+                    onClose={() => setSelectedPatient(null)}
+                >
+                    <PatientDetailModal patient={selectedPatient} />
+                </Modal>
+            )
+          }
         <Footer /> 
       </main>
     </section>

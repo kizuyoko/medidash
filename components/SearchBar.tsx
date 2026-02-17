@@ -1,9 +1,12 @@
 import Image from "next/image";
+type Props = {
+  value: string;
+  onChange: (value: string) => void;
+}
 
-const SearchBar = () => {
+const SearchBar = ({ value, onChange }: Props) => {
   return (
-    <div className="space-x-2 border border-gray-500 rounded-lg flex items-center px-2 py-1 
-                    group focus-within:border-blue-400 focus-within:bg-blue-50 transition-colors sha">
+    <form className="space-x-2 border border-gray-300 rounded-lg flex items-center px-3 py-1 group focus-within:border-blue-400 focus-within:bg-blue-50 transition-colors">
       <label htmlFor="search-input" className="sr-only">
         Search
       </label>
@@ -13,6 +16,8 @@ const SearchBar = () => {
         placeholder="Search patients..."
         aria-label="Search"
         className="flex-1 bg-transparent outline-none"
+        value={value}
+        onChange={e => onChange(e.target.value)}
       />
       <button
         type="submit"
@@ -26,7 +31,7 @@ const SearchBar = () => {
           className="absolute top-0 right-0"
         />
       </button>
-    </div>
+    </form>
   );
 };
 

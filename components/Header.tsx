@@ -4,10 +4,14 @@ import Paragraph from "./ui/Paragraph";
 import Button from "./ui/Button";
 import Modal from "./ui/Modal";
 import SearchBar from "./SearchBar";
-
 import { useState } from "react";
 
-const Header = () => {
+type Props = {
+  searchText: string;
+  onSearchChange: (value: string) => void;
+}
+
+const Header = ({ searchText, onSearchChange }: Props) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -17,8 +21,11 @@ const Header = () => {
               <Heading>Patient List</Heading>
               <Paragraph>Overview of all registered patients</Paragraph>
             </div>
-            <div className="flex items-center space-x-2">
-                <SearchBar />
+            <div className="flex items-center space-x-4">
+                <SearchBar 
+                    value={searchText}
+                    onChange={onSearchChange}
+                />
                 <Button onClick={() => setOpen(true)}>New</Button>
             </div>
           </div>
