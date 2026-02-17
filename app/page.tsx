@@ -21,8 +21,12 @@ export default function Home() {
   const displayPatients:  DisplayPatients = useMemo(() => {
     return [...rawPatients].map((patient) => ({
       ...patient, 
+      middle_name: patient.middle_name ?? "",
+      nextAppointment: patient.nextAppointment ?? "",
+      medications: patient.medications ?? "",
+
       patientId: generatePatientId(patient.id),
-      fullName: generateFullname(patient.first_name, patient.last_name, patient.middle_name),
+      fullName: generateFullname(patient.first_name, patient.last_name, patient.middle_name ?? ""),
       age: calculateAge(patient.birthday),
       ageText: generateAgeText(patient.birthday),
     })); 

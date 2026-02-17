@@ -9,12 +9,16 @@ import PatientDetailModal from "./PatientDetailModal";
 import Modal from "../ui/Modal";
 
 
-const displayPatients: DisplayPatients = rawPatients.map((p) => ({
-  ...p,
-  patientId: generatePatientId(p.id),
-  fullName: generateFullname(p.first_name, p.last_name, p.middle_name),
-  age: calculateAge(p.birthday),
-  ageText: generateAgeText(p.birthday),
+const displayPatients: DisplayPatients = rawPatients.map((patient) => ({
+  ...patient,
+  middle_name: patient.middle_name ?? "",
+  nextAppointment: patient.nextAppointment ?? "",
+  medications: patient.medications ?? "",
+
+  patientId: generatePatientId(patient.id),
+  fullName: generateFullname(patient.first_name, patient.last_name, patient.middle_name ?? ""),
+  age: calculateAge(patient.birthday),
+  ageText: generateAgeText(patient.birthday),
 }));
 
 const meta: Meta<typeof PatientsTable> = {

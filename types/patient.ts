@@ -6,7 +6,7 @@ export type Patient = {
   id: number;
   first_name: string;
   last_name: string;
-  middle_name?: string;
+  middle_name?: string | null;
   birthday: string;
   gender: Gender;
   bloodType: BloodType;
@@ -14,12 +14,12 @@ export type Patient = {
   phone: string;
   email: string;
   address: string;
-  lastVisit?: string; // ISO or display string for now
-  nextAppointment?: string;// ISO or display string for now
-  doctor: string;
+  lastVisit?: string | null; // ISO or display string for now
+  nextAppointment?: string | null;// ISO or display string for now
+  doctor?: string | null;
   condition: string;
-  allergies?: string; // Later array
-  medications?: string;
+  allergies?: string | null; // Later array
+  medications?: string | null;
 };
 
 export type Patients = Patient[];
