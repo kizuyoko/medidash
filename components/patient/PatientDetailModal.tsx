@@ -1,5 +1,4 @@
-import type { Patient } from "../../types/patient";
-import { generatePatientId, generateFullname } from '../../utilities/data';
+import type { DisplayPatient } from "../../types/patient";
 import Heading from "../ui/Heading";
 import PatientBasicInfoSection from "./PatientBasicInfoSection";
 import PatientContactInfoSection from "./PatientContactInfoSection";
@@ -7,19 +6,17 @@ import PatientMedicalInfoSection from "./PatientMedicalInfoSection";
 import PatientVisitHistorySection from "./PatientVisitHistorySection";
 
 type PatientProps = {
-    patient: Patient
+    patient: DisplayPatient
 }
 
-const PatientDetailModal = ({ patient }: PatientProps) => {
-    const patientId = generatePatientId(patient.id);
-    const fullName = generateFullname(patient.first_name, patient.last_name, patient.middle_name);    
+const PatientDetailModal = ({ patient }: PatientProps) => {  
 
     return (
         <section className="patient-modal">
             <Heading>
-                {fullName}  
+                {patient.fullName}  
                 <span className="pl-3 text-sm font-normal">
-                    {patientId}
+                    {patient.patientId}
                 </span>
             </Heading>
             <PatientBasicInfoSection patient={patient} />
