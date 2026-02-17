@@ -46,10 +46,14 @@ export default function Home() {
 
     if (!keyword) return displayPatients;
 
-    return displayPatients.filter((patient) =>
+    const updatedPatients = displayPatients.filter((patient) =>
       patient.fullName.toLowerCase().includes(keyword)
     );
+
+    return updatedPatients;
   }, [displayPatients, debouncedSearchText]);
+
+  const totalPatients = filteredPatients.length;
 
   return (
     <section className="body">
@@ -58,6 +62,7 @@ export default function Home() {
         <Header 
           searchText={searchText}
           onSearchChange={setSearchText}
+          totalPatients={totalPatients}
         />
         <PatientsTable  
           onClick={setSelectedPatientHandlar}

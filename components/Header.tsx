@@ -9,9 +9,10 @@ import { useState } from "react";
 type Props = {
   searchText: string;
   onSearchChange: (value: string) => void;
+  totalPatients: number;
 }
 
-const Header = ({ searchText, onSearchChange }: Props) => {
+const Header = ({ searchText, onSearchChange, totalPatients }: Props) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -19,7 +20,7 @@ const Header = ({ searchText, onSearchChange }: Props) => {
           <div className="flex justify-between items-end">
             <div>
               <Heading>Patient List</Heading>
-              <Paragraph>Overview of all registered patients</Paragraph>
+              <Paragraph>Overview of all registered patients ({totalPatients})</Paragraph>
             </div>
             <div className="flex items-center space-x-4">
                 <SearchBar 
