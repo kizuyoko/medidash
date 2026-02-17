@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
@@ -13,6 +13,15 @@ import PatientDetailModal from "@/components/patient/PatientDetailModal";
 export default function Home() {
   const [selectedPatient, setSelectedPatient] = useState<DisplayPatient | null>(null);
   const [searchText, setSearchText] = useState("");
+  const [debouncedSearchText, setDebouncedSearchText] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchText(searchText);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [searchText]);
 
   const setSelectedPatientHandlar = (patient: DisplayPatient) => {
       setSelectedPatient(patient);
@@ -33,14 +42,14 @@ export default function Home() {
   }, [])
 
   const filteredPatients: DisplayPatients = useMemo(() => {
-    const keyword = searchText.trim().toLocaleLowerCase();
+    const keyword = debouncedSearchText.trim().toLocaleLowerCase();
 
     if (!keyword) return displayPatients;
 
     return displayPatients.filter((patient) =>
       patient.fullName.toLowerCase().includes(keyword)
     );
-  }, [displayPatients, searchText]);
+  }, [displayPatients, debouncedSearchText]);
 
   return (
     <section className="body">
