@@ -53,7 +53,9 @@ export default function Home() {
     return updatedPatients;
   }, [displayPatients, debouncedSearchText]);
 
-  const totalPatients = filteredPatients.length;
+  const totalPatients = rawPatients.length;
+  const filteredCount = filteredPatients.length;
+
 
   return (
     <section className="body">
@@ -63,6 +65,7 @@ export default function Home() {
           searchText={searchText}
           onSearchChange={setSearchText}
           totalPatients={totalPatients}
+          filteredPatients={filteredCount}
         />
         <PatientsTable  
           onClick={setSelectedPatientHandlar}

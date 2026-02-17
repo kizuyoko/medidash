@@ -10,9 +10,10 @@ type Props = {
   searchText: string;
   onSearchChange: (value: string) => void;
   totalPatients: number;
+  filteredPatients?: number;
 }
 
-const Header = ({ searchText, onSearchChange, totalPatients }: Props) => {
+const Header = ({ searchText, onSearchChange, totalPatients, filteredPatients }: Props) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -20,7 +21,18 @@ const Header = ({ searchText, onSearchChange, totalPatients }: Props) => {
           <div className="flex justify-between items-end">
             <div>
               <Heading>Patient List</Heading>
-              <Paragraph>Overview of all registered patients ({totalPatients})</Paragraph>
+              <Paragraph>
+                {
+                    searchText ? (
+                        <>
+                        Search results (
+                        <strong>{searchText}</strong>, {filteredPatients}/{totalPatients})
+                        </>
+                    ) : (
+                        <>Overview of all registered patients ({totalPatients})</>
+                    )
+                }
+              </Paragraph>
             </div>
             <div className="flex items-center space-x-4">
                 <SearchBar 
