@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import SideBar from './Sidebar';
 import { patients } from '@/data/fake_patients';
 import '@/app/globals.css';
+import type { PatientStatus } from '@/types/patient';
 
 const meta: Meta<typeof SideBar> = {
     title: 'Components/SideBar',
@@ -20,10 +21,14 @@ export default meta;
 type Story = StoryObj<typeof SideBar>;
 
 export const Default: Story = {
-    args: { patients },
     render: () => (
     <div className="max-w-md w-full">
-        <SideBar patients={patients} />
+        <SideBar 
+            patients={patients} 
+            setStatusFilter={(status: PatientStatus | null)  =>
+                alert(`setStatusFilter called with ${status ?? 'null'}`)
+            }
+        />
     </div>
   ),
 };

@@ -1,9 +1,10 @@
 import type { HTMLAttributes } from 'react';
+import { PatientStatus } from '@/types/patient';
 
 type SidebarCardProps = {
   label: string;
   number: number;
-  variant?: 'total' | 'waiting' | 'in_consult' | 'done' | 'cancelled';
+  variant?: 'total' | PatientStatus;
   onClick?: () => void;
   className?: string;
 } & HTMLAttributes<HTMLDivElement>;
@@ -12,17 +13,19 @@ const SidebarCard = ({
   label,
   number,
   variant = 'total',
+  onClick,
   className = '',
   ...props
 }: SidebarCardProps) => {
   
   return (
     <div 
-      className={`card ${className}`} 
+      className={`card cursor-pointer ${className}`} 
       style={{
         backgroundColor: `var(--color-bg-${variant})`,
         borderColor: `var(--color-border-${variant})`,
       }}
+      onClick={onClick}
       {...props}
     >
       <div

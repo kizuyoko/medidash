@@ -50,8 +50,6 @@
 - Search bar on the header
 - Filtering with clicking on the Sidebar's cards
 - Ordering the table with clicking on the table header cells
-- Pagenation
-
 - Storybook: filtered / sorted states
 
 #### Week 4: Derived Data UI & Callbacks ####
@@ -64,6 +62,7 @@
 - Hook: useEffect, useState
 - Fetch data from Mockaroo
 - Handle loading / error states
+- Pagenation
 
 #### Week 6: Custom Hooks ####
 - usePatients（API + filtering + sorting + loading）
