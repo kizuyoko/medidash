@@ -64,6 +64,7 @@ export default function Home() {
       <main>
         <Header 
           searchText={searchText}
+          statusFilter={statusFilter}
           onSearchChange={setSearchText}
           totalPatients={totalPatients}
           filteredPatients={filteredCount}

@@ -5,16 +5,24 @@ import Button from "./ui/Button";
 import Modal from "./ui/Modal";
 import SearchBar from "./SearchBar";
 import { useState } from "react";
+import type { PatientStatus } from "@/types/patient";
 
 type Props = {
   searchText: string;
+  statusFilter: PatientStatus | null;
   onSearchChange: (value: string) => void;
   totalPatients: number;
   filteredPatients?: number;
 }
 
-const Header = ({ searchText, onSearchChange, totalPatients, filteredPatients }: Props) => {
+const Header = ({ searchText, statusFilter, onSearchChange, totalPatients, filteredPatients }: Props) => {
     const [open, setOpen] = useState(false);
+    const statusLabels: Record<PatientStatus, string> = {
+        waiting: 'Waiting',
+        in_consult: 'In Consultation',
+        done: 'Done',
+        cancelled: 'Cancelled',
+    };
 
     return (
         <header>
@@ -22,17 +30,23 @@ const Header = ({ searchText, onSearchChange, totalPatients, filteredPatients }:
             <div>
               <Heading>Patient List</Heading>
               <Paragraph>
-                {
-                    searchText ? (
-                        <>
-                        Search results (
-                        <strong>{searchText}</strong>, {filteredPatients}/{totalPatients})
-                        </>
-                    ) : (
-                        <>Overview of all registered patients ({totalPatients})</>
-                    )
-                }
-              </Paragraph>
+                {searchText && statusFilter ? (
+                    <>
+                    <strong>{statusLabels[statusFilter]}</strong> patients matching{" "}
+                    <strong>{searchText}</strong> ({filteredPatients}/{totalPatients})
+                    </>
+                ) : searchText ? (
+                    <>
+                    Search results (<strong>{searchText}</strong>, {filteredPatients}/{totalPatients})
+                    </>
+                ) : statusFilter ? (
+                    <>
+                    <strong>{statusLabels[statusFilter]}</strong> patients ({filteredPatients}/{totalPatients})
+                    </>
+                ) : (
+                    <>Overview of all registered patients ({totalPatients})</>
+                )}
+                </Paragraph>
             </div>
             <div className="flex items-center space-x-4">
                 <SearchBar 
