@@ -47,6 +47,7 @@ export const WithModal: Story = {
         <PatientsTable
           patients={displayPatients}
           onClick={(patient) => setSelectedPatient(patient)}
+          onSort={() => {alert("Sort clicked")}}
         />
         {selectedPatient && (
             <Modal
