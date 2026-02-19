@@ -15,6 +15,8 @@ export default function Home() {
   const [searchText, setSearchText] = useState("");
   const [debouncedSearchText, setDebouncedSearchText] = useState("");
   const [statusFilter, setStatusFilter] = useState<PatientStatus | null>(null);
+  const [sortBy, setSortBy] = useState<keyof DisplayPatient | null>(null);
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,6 +56,54 @@ export default function Home() {
   const totalPatients = rawPatients.length;
   const filteredCount = filteredPatients.length;
 
+  const sortedPatients = useMemo(() => {    
+    if (!sortBy) return filteredPatients;
+
+    const sorted = [...filteredPatients].sort((a, b) => {
+      const aValue = a[sortBy];
+      const bValue = b[sortBy];
+
+      if (aValue === undefined) return 1;
+      if (bValue === undefined) return -1;
+
+      if (sortBy === "nextAppointment") {
+        const aDate = aValue === "-" || !aValue ? null : new Date(aValue as string);
+        const bDate = bValue === "-" || !bValue ? null : new Date(bValue as string);
+
+        if (!aDate && !bDate) return 0;
+        if (!aDate) return 1;
+        if (!bDate) return -1;
+
+        return sortDirection === "asc" 
+          ? aDate.getTime() - bDate.getTime() 
+          : bDate.getTime() - aDate.getTime();    
+
+      }  
+
+      if (typeof aValue === "number" && typeof bValue === "number") {
+        return sortDirection === "asc" ? aValue - bValue : bValue - aValue;
+      }
+
+      if (typeof aValue === "string" && typeof bValue === "string") {
+        return sortDirection === "asc" 
+          ? aValue.localeCompare(bValue) 
+          : bValue.localeCompare(aValue);
+      }
+
+      return 0;
+    });
+
+    return sorted;
+  }, [filteredPatients, sortBy, sortDirection]);
+
+  const handleSort = (field: keyof DisplayPatient) => {
+    if (sortBy === field) {
+      setSortDirection(prev => prev === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(field);
+      setSortDirection("asc");
+    }
+  };
 
   return (
     <section className="body">
@@ -71,7 +121,8 @@ export default function Home() {
         />
         <PatientsTable  
           onClick={setSelectedPatientHandlar}
-          patients={filteredPatients} />
+          onSort={handleSort}
+          patients={sortedPatients} />
         {
             selectedPatient && (
                 <Modal

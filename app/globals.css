@@ -146,7 +146,7 @@ main {
         @apply bg-gray-200 border-b border-gray-400;
     }
     table thead th {
-        @apply px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider;
+        @apply px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider cursor-pointer;
     }
     table tbody {
         @apply bg-white divide-y divide-gray-200;
