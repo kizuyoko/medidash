@@ -24,7 +24,6 @@
 
 ### Week 0: Preparation ###
 - Brainstorm
-- prototype.md
 - Wireframe
 - Figma (https://scan-grain-66542119.figma.site/)
 - Tech stack
