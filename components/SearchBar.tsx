@@ -5,8 +5,15 @@ type Props = {
 }
 
 const SearchBar = ({ value, onChange }: Props) => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onChange(value);
+  }
+
   return (
-    <form className="space-x-2 border border-gray-300 rounded-lg flex items-center px-3 py-1 group focus-within:border-blue-400 focus-within:bg-blue-50 transition-colors">
+    <form 
+      onSubmit={handleSubmit}
+      className="space-x-2 border border-gray-400 rounded-lg flex items-center px-3 py-1 group focus-within:border-blue-400 focus-within:bg-blue-50 transition-colors">
       <label htmlFor="search-input" className="sr-only">
         Search
       </label>
@@ -28,7 +35,7 @@ const SearchBar = ({ value, onChange }: Props) => {
           alt="Search"
           width={20}
           height={20}
-          className="absolute top-0 right-0"
+          className="absolute top-0 right-0 opacity-60"
         />
       </button>
     </form>
