@@ -64,7 +64,10 @@ export default function Home() {
         <PatientsTable  
           onClick={setSelectedPatientHandlar}
           onSort={handleSort}
-          patients={patients} />
+          patients={patients} 
+          sortBy={sortBy}
+          sortDirection={sortDirection}
+        />
         {
             selectedPatient && (
                 <Modal

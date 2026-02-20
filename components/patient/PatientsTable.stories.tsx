@@ -48,6 +48,8 @@ export const WithModal: Story = {
           patients={displayPatients}
           onClick={(patient) => setSelectedPatient(patient)}
           onSort={() => {alert("Sort clicked")}}
+          sortBy={null}
+          sortDirection="asc"
         />
         {selectedPatient && (
             <Modal

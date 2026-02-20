@@ -6,13 +6,17 @@ type Props = {
 	patients: DisplayPatients;
 	onClick: (patient: DisplayPatient) => void;
 	onSort: (field: keyof DisplayPatient) => void;
+	sortBy: keyof DisplayPatient | null;
+	sortDirection?: "asc" | "desc";
 }
 
-const PatientsTable = ({ patients, onClick, onSort } : Props) => {
+const PatientsTable = ({ patients, onClick, onSort, sortBy, sortDirection } : Props) => {
 	return (
 		<table>
 			<PatientsTableHead 
 				onSort={onSort}
+				sortBy={sortBy}
+				sortDirection={sortDirection}
 			/>
 			<PatientsTableBody 
 				patients={patients}
