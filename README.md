@@ -88,6 +88,7 @@
 - Implement routing for patient detail pages
 - Sync search and filter state with URL query parameters
 - Improve SEO when converting to a public-facing app
+- Test (Vitest, Jest, Cypress)
 
 ## Demo ## 
 [Demo in Vercel](https://medidash-steel.vercel.app/)
