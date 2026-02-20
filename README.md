@@ -40,17 +40,19 @@
 #### Week 2: UI Components & Storybook ####
 - Hook: useState for local state
 - Type Patient and Patients
-- Start fake with Mockaroo
-- Card, Table, Badge, Button
+- Start fake data with Mockaroo
+- UI components: Heading, Parapraph, Card, Table, Badge, Button
 - Write Storybook stories
 - Display table and modal with fake data
+- Storybook: basic UI elements and components
 
 #### Week 3: Filtering & Sorting ####
-- Hook: useState, useMemo
+- Hook: useState, useMemo, custom Hooks
 - Search bar on the header
 - Filtering with clicking on the Sidebar's cards
 - Ordering the table with clicking on the table header cells
 - Storybook: filtered / sorted states
+- Custom Hook "usePatients (sorting, filtering, ordering)"
 
 #### Week 4: Derived Data UI & Callbacks ####
 - Hook: useMemo, useCallback
@@ -63,11 +65,13 @@
 - Fetch data from Mockaroo
 - Handle loading / error states
 - Pagenation
+- Storybook: skelton, pagenation
 
 #### Week 6: Custom Hooks ####
 - usePatients（API + filtering + sorting + loading）
 - useStats for stats calculation
 - Separate UI and logic
+- Cache
 
 #### Week 7: Accessibility & Responsive Design ####
 - Semantic HTML
