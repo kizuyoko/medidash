@@ -232,7 +232,7 @@ export const patients: Patients = [
   "lastVisit": "2008-09-10",
   "nextAppointment": null,
   "doctor": "Warner Hutton",
-  "condition": "Hypertension",
+  "condition": "Critical",
   "allergies": "Peanuts",
   "medications": "Albuterol"
 }, {
@@ -268,7 +268,7 @@ export const patients: Patients = [
   "lastVisit": "2014-10-30",
   "nextAppointment": "2027-02-02",
   "doctor": "Thorstein Hannigan",
-  "condition": "Asthma",
+  "condition": "Critical",
   "allergies": "Shellfish",
   "medications": "Aspirin"
 }, {
@@ -340,7 +340,7 @@ export const patients: Patients = [
   "lastVisit": null,
   "nextAppointment": "2026-09-06",
   "doctor": "Kinny Scarman",
-  "condition": "Flu",
+  "condition": "Critical",
   "allergies": "Mold",
   "medications": "Ibuprofen"
 }, {
@@ -394,7 +394,7 @@ export const patients: Patients = [
   "lastVisit": null,
   "nextAppointment": "2026-07-09",
   "doctor": "Byron Greetham",
-  "condition": "Fracture",
+  "condition": "Critical",
   "allergies": "Dogs",
   "medications": "Prednisone"
 }, {
@@ -448,7 +448,7 @@ export const patients: Patients = [
   "lastVisit": "2004-05-20",
   "nextAppointment": "2026-08-08",
   "doctor": "Nils Tumpane",
-  "condition": "Anxiety",
+  "condition": "Critical",
   "allergies": null,
   "medications": null
 }, {

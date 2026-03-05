@@ -9,6 +9,7 @@ import type { DisplayPatient, PatientStatus } from "@/types/patient";
 import Modal from "@/components/ui/Modal";
 import PatientDetailModal from "@/components/patient/PatientDetailModal";
 import usePatients from "@/hooks/usePatients";
+import AlertsList from "@/components/alerts/AlertsList";
 
 export default function Home() {
   const [selectedPatient, setSelectedPatient] = useState<DisplayPatient | null>(null);
@@ -61,6 +62,7 @@ export default function Home() {
           totalPatients={totalPatients}
           filteredPatients={filteredCount}
         />
+        <AlertsList patients={patients} />
         <PatientsTable  
           onClick={setSelectedPatientHandlar}
           onSort={handleSort}
