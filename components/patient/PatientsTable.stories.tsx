@@ -6,6 +6,7 @@ import PatientDetailModal from "./PatientDetailModal";
 import Modal from "../ui/Modal";
 import { getFakeDisplayPatients } from '@/data/fake_display_patients';
 import { DisplayPatient } from "@/types/patient";
+
 const patients = getFakeDisplayPatients();
 
 const meta: Meta<typeof PatientsTable> = {

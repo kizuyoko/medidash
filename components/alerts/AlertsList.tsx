@@ -1,7 +1,6 @@
 "use client";
 import { useMemo } from "react";
 import type { DisplayPatients } from "../../types/patient";
-import Heading from "../ui/Heading";
 
 type Props = {
   patients: DisplayPatients;
@@ -15,19 +14,20 @@ const AlertsList = ({ patients } : Props) => {
 
     return [
       { label: "patients without appointment", count: noAppointment },
-      { label: "patients older than 80", count: elderly },
       { label: "patients in critical condition", count: critical },
+      { label: "patients older than 80", count: elderly },
+      
     ]
   }, [patients])
-
+  
   return alerts.length > 0 ? (
-    <section className="my-4 lg:flex gap-4 border border-red-400 rounded-lg p-2 px-4 bg-red-50">
-      <Heading level={3} className="text-red-700">Alert List</Heading>
-      <ul className="mx-4 md:flex gap-6">
+    <section className="card w-full my-2 py-2 border-red-400 rounded-lg bg-red-50 text-sm">
+      <ul className="md:flex gap-6">
         {alerts.map(alert => 
           alert.count > 0 && (
-            <li key={alert.label} className=" text-red-800 font-medium">
-              <span className="text-xl">⚠ </span> {alert.count} {alert.label}
+            <li key={alert.label} className=" text-red-800">
+              <span className="text-xl">⚠ {alert.count} </span> 
+              {alert.label}
             </li>
           )
         )}

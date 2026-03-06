@@ -367,7 +367,7 @@ export const patients: Patients = [
   "last_name": "Volett",
   "middle_name": "Elisha",
   "birthday": "1969-03-13",
-  "gender": "female",
+  "gender": "unknown",
   "bloodType": "Unknown",
   "status": "cancelled",
   "phone": "(692) 7921701",

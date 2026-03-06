@@ -10,6 +10,7 @@ import Modal from "@/components/ui/Modal";
 import PatientDetailModal from "@/components/patient/PatientDetailModal";
 import usePatients from "@/hooks/usePatients";
 import AlertsList from "@/components/alerts/AlertsList";
+import StatsPanel from "@/components/stats/StatsPanel";
 
 export default function Home() {
   const [selectedPatient, setSelectedPatient] = useState<DisplayPatient | null>(null);
@@ -62,7 +63,10 @@ export default function Home() {
           totalPatients={totalPatients}
           filteredPatients={filteredCount}
         />
-        <AlertsList patients={patients} />
+        <section>
+          <AlertsList patients={patients} />
+          <StatsPanel patients={patients} />
+        </section>
         <PatientsTable  
           onClick={setSelectedPatientHandlar}
           onSort={handleSort}
