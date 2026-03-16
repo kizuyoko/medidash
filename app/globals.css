@@ -136,36 +136,32 @@ input:-internal-autofill-selected {
     .patient-modal section h3 {
         @apply pb-2
     }
-
     .basic-info-wrap{
         @apply grid grid-cols-2 sm:grid-cols-4 gap-4;
-    }
-
-
-
+    } 
 
     /* Table */
     table {
-        @apply border-separate border-spacing-0 rounded-lg shadow-sm border border-gray-300 overflow-hidden min-w-full mt-4;
+        @apply border-collapse rounded-lg lg:border border-gray-300 min-w-full mt-4;
     }
     table thead {
-        @apply bg-gray-200 border-b border-gray-400;
+        @apply bg-gray-200 border-b lg:table-header-group border-gray-400 hidden;
     }
     table thead th {
         @apply px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider cursor-pointer;
     }
     table tbody {
-        @apply bg-white divide-y divide-gray-200;
+        @apply lg:bg-white divide-y divide-gray-200 bg-none;
     }
     table tbody tr {
-        @apply hover:bg-gray-100 transition-colors cursor-pointer;
+        @apply hover:bg-gray-100 transition-colors cursor-pointer block lg:table-row border lg:border-none rounded-lg mb-4 lg:mb-0 py-1 lg:py-0;
     }
     
     table tbody tr:nth-child(odd) {
         @apply bg-gray-50;
     }
     table tbody td {
-        @apply border-t border-gray-200 px-6 py-4 whitespace-nowrap text-sm;
+        @apply lg:border border-gray-200 px-4 py-1 lg:px-6 lg:py-4 whitespace-nowrap text-sm block lg:table-cell;
     }
     table tbody td b {
         @apply font-medium;
