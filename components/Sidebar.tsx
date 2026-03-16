@@ -19,29 +19,33 @@ const Sidebar = ({ patients, setStatusFilter }: Props) => {
             <Heading level={1}>MediDash</Heading>
             <Paragraph>Patient Management System</Paragraph>
             <div className="overview">
-                <SidebarCard 
-                    label="Total Patients"
-                    number={totalPatients}
-                    onClick={() => setStatusFilter(null)}
+                <div className="side-cards">
+                    <SidebarCard 
+                        label="Total Patients"
+                        number={totalPatients}
+                        onClick={() => setStatusFilter(null)}
+                    />
+                    <SidebarCard 
+                        variant="waiting"
+                        label="Waiting"
+                        number={watingPatients}
+                        onClick={() => setStatusFilter("waiting")}
                 />
-                <SidebarCard 
-                    variant="waiting"
-                    label="Waiting"
-                    number={watingPatients}
-                    onClick={() => setStatusFilter("waiting")}
-                />
-                <SidebarCard 
-                    variant="in_consult"
-                    label="In Consult"
-                    number={in_consultPatients}
-                    onClick={() => setStatusFilter("in_consult")}
-                />
-                <SidebarCard 
-                    variant="done"
-                    label="Done"
-                    number={donePatients}
-                    onClick={() => setStatusFilter("done")}
-                />
+                </div>
+                <div className="side-cards">
+                    <SidebarCard 
+                        variant="in_consult"
+                        label="In Consult"
+                        number={in_consultPatients}
+                        onClick={() => setStatusFilter("in_consult")}
+                    />
+                    <SidebarCard 
+                        variant="done"
+                        label="Done"
+                        number={donePatients}
+                        onClick={() => setStatusFilter("done")}
+                    />
+                </div>
             </div>
         </aside>
     )

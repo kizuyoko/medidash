@@ -20,7 +20,7 @@ const SidebarCard = ({
   
   return (
     <div 
-      className={`card cursor-pointer ${className}`} 
+      className={`card cursor-pointer min-w-30 ${className}`} 
       style={{
         backgroundColor: `var(--color-bg-${variant})`,
         borderColor: `var(--color-border-${variant})`,

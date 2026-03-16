@@ -76,7 +76,7 @@ h1, h2, h3, h4 {
   @apply font-title
 }
 .body {
-    @apply lg:flex min-h-screen antialiased;
+    @apply flex flex-col lg:flex-row min-h-screen antialiased;
 }
 
 aside {
@@ -94,9 +94,11 @@ input:-internal-autofill-selected {
 @layer components {
 /* Aside Overview */    
     .overview {
-        @apply mt-4 flex lg:flex-col gap-4;
+        @apply w-full flex lg:flex-col lg:gap-0 gap-4 flex-wrap;
     }
-
+    .side-cards {
+        @apply lg:w-full lg:mt-4 flex flex-row lg:flex-col gap-4 flex-wrap;
+    }
     .card {
         @apply rounded-lg p-4 border;
     }

@@ -26,7 +26,7 @@ const Header = ({ searchText, statusFilter, onSearchChange, totalPatients, filte
 
     return (
         <header>
-          <div className="flex justify-between items-end">
+          <div className="md:flex justify-between items-end">
             <div>
               <Heading>Patient List</Heading>
               <Paragraph>
@@ -48,7 +48,7 @@ const Header = ({ searchText, statusFilter, onSearchChange, totalPatients, filte
                 )}
                 </Paragraph>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="w-full md:w-auto flex items-center space-x-4 mt-2">
                 <SearchBar 
                     value={searchText}
                     onChange={onSearchChange}
