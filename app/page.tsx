@@ -32,7 +32,7 @@ export default function Home() {
       setSelectedPatient(patient);
   }
 
-  const { patients, totalPatients, filteredCount, alertsList } = usePatients({
+  const { patients, totalPatients, filteredCount, alertsList, statusStats } = usePatients({
     rawPatients,
     searchText: debouncedSearchText,
     statusFilter,
@@ -65,7 +65,7 @@ export default function Home() {
         />
         <section>
           <AlertsList alerts={alertsList} />
-          <StatsPanel patients={patients} />
+          <StatsPanel stats={statusStats } />
         </section>
         <PatientsTable  
           onClick={setSelectedPatientHandlar}

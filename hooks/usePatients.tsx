@@ -94,6 +94,31 @@ export default function usePatients({ rawPatients, searchText, statusFilter, sor
     ];
   }, [sortedPatients]);
 
+  const statusStats = useMemo(() => {
+    const statusStats = {
+      waiting: 0,
+      in_consult: 0,
+      done: 0,
+      cancelled: 0,
+    };
+    const genderStats = {
+      male: 0,
+      female: 0,
+      unknown: 0,
+    };
+    const bloodStats = {
+      'A+': 0, 'A-': 0, 'B+': 0, 'B-': 0, 'O+': 0, 'O-': 0, 'AB+': 0, 'AB-': 0,  Unknown: 0,
+    };
+
+    sortedPatients.forEach(p => {
+      statusStats[p.status] ++;
+      genderStats[p.gender]++;
+      bloodStats[p.bloodType]++;
+    });
+
+    return { statusStats, genderStats, bloodStats};
+  }, [sortedPatients]);
+
   const patients = sortedPatients;
   const totalPatients = rawPatients.length;
   const filteredCount = patients.length;
@@ -103,5 +128,6 @@ export default function usePatients({ rawPatients, searchText, statusFilter, sor
     totalPatients,
     filteredCount,
     alertsList,
+    statusStats,
   };
 };
