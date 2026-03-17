@@ -45,30 +45,34 @@ const StatsPanel = ({ patients } : Props) => {
 
   return (
     <section className="w-full my-2 border border-slate-400 rounded-lg p-2 px-4 bg-slate-50 text-sm">
-      <ul className="flex flex-row md:flex-col gap-6 md:gap-2">
-        <li className="md:flex gap-4"><span className="inline-block w-20">Status</span>
+      <ul className="flex lg:flex-col gap-4 lg:gap-2 flex-wrap">
+        <li className="lg:flex gap-4"><span className="inline-block w-20">Status</span>
+          <ul className="lg:flex gap-4">
          {
           statsItems.map(item => (
-            <p key={item.label}>
+            <li key={item.label}>
               <span className={`inline-block mr-2 w-3 h-3 rounded-full ${item.color}`}></span>
               {item.label}: {item.value} 
-            </p>
+            </li>
           ))
-         }
+         }</ul>
         </li>
-        <li className="md:flex gap-4">
+        <li className="lg:flex gap-4">
           <span className="inline-block w-20">Gender</span>
-          <p>Male: {statusStats.gender.male}</p>
-          <p>Female: {statusStats.gender.female}</p>
-          <p>Unknown: {statusStats.gender.unknown}</p>
+          <ul className="lg:flex gap-4">
+            <li>Male: {statusStats.gender.male}</li>
+            <li>Female: {statusStats.gender.female}</li>
+            <li>Unknown: {statusStats.gender.unknown}</li>
+          </ul>
         </li>
-        <li className="md:flex gap-4">
+        <li className="lg:flex gap-4">
           <span className="inline-block w-20">Blood Type</span>
+          <ul className="flex gap-1 flex-wrap">
           {bloodTypes.map(type => (
-            <p key={type}>
+            <li key={type}>
               {type}: {statusStats.blood[type as keyof typeof statusStats.blood]}
-            </p>
-          ))}
+            </li>
+          ))}</ul>
         </li>
       </ul>
     </section>
