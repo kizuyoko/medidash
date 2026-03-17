@@ -14,8 +14,7 @@ type Props = {
 
 export default function usePatients({ rawPatients, searchText, statusFilter, sortBy, sortDirection }: Props) {
 
-  const patients = useMemo(() => {
-
+  const displayPatients = useMemo(() => {
     return rawPatients
       .map((p) => ({
         ...p, 
@@ -27,7 +26,11 @@ export default function usePatients({ rawPatients, searchText, statusFilter, sor
         fullName: generateFullname(p.first_name, p.last_name, p.middle_name ?? ""),
         age: calculateAge(p.birthday),
         ageText: generateAgeText(p.birthday),
-      }))
+      }));
+  }, [rawPatients]);
+
+  const patients = useMemo(() => {
+    return displayPatients
       .filter((p) => {
         const keyword = searchText.trim().toLowerCase();
         return !keyword || p.fullName.toLowerCase().includes(keyword);
@@ -68,7 +71,7 @@ export default function usePatients({ rawPatients, searchText, statusFilter, sor
 
         return 0;
       });
-    }, [rawPatients, searchText, statusFilter, sortBy, sortDirection]);
+    }, [displayPatients, searchText, statusFilter, sortBy, sortDirection]);
 
   const totalPatients = rawPatients.length;
   const filteredCount = patients.length;
