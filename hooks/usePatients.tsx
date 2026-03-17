@@ -82,6 +82,18 @@ export default function usePatients({ rawPatients, searchText, statusFilter, sor
 
   }, [filteredPatients, sortBy, sortDirection])
 
+  const alertsList = useMemo(() => {
+    const noAppointment = sortedPatients.filter(p => !p.nextAppointment).length;
+    const elderly = sortedPatients.filter(p => p.age >= 80).length
+    const critical = sortedPatients.filter(p => p.condition === "Critical").length
+
+    return [
+      { label: "patients without appointment", count: noAppointment },
+      { label: "patients in critical condition", count: critical },
+      { label: "patients older than 80", count: elderly },
+    ];
+  }, [sortedPatients]);
+
   const patients = sortedPatients;
   const totalPatients = rawPatients.length;
   const filteredCount = patients.length;
@@ -90,5 +102,6 @@ export default function usePatients({ rawPatients, searchText, statusFilter, sor
     patients,
     totalPatients,
     filteredCount,
+    alertsList,
   };
 };

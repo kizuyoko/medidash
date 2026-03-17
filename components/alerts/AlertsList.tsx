@@ -1,24 +1,14 @@
-"use client";
-import { useMemo } from "react";
-import type { DisplayPatients } from "../../types/patient";
+type Alert = {
+  label: string;
+  count: number;
+};
 
 type Props = {
-  patients: DisplayPatients;
+  alerts: Alert[];
 }
 
-const AlertsList = ({ patients } : Props) => {
-  const alerts = useMemo(() => {
-    const noAppointment = patients.filter(p => !p.nextAppointment).length;
-    const elderly = patients.filter(p => p.age >= 80).length
-    const critical = patients.filter(p => p.condition === "Critical").length
-
-    return [
-      { label: "patients without appointment", count: noAppointment },
-      { label: "patients in critical condition", count: critical },
-      { label: "patients older than 80", count: elderly },
-      
-    ]
-  }, [patients])
+const AlertsList = ({ alerts } : Props) => {
+  if (alerts.length === 0) return null; 
   
   return alerts.length > 0 ? (
     <section className="card w-full my-2 py-2 border-red-400 rounded-lg bg-red-50 text-sm">

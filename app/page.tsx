@@ -32,12 +32,12 @@ export default function Home() {
       setSelectedPatient(patient);
   }
 
-  const { patients, totalPatients, filteredCount } = usePatients({
+  const { patients, totalPatients, filteredCount, alertsList } = usePatients({
     rawPatients,
     searchText: debouncedSearchText,
     statusFilter,
     sortBy,
-    sortDirection
+    sortDirection,
    });
 
   const handleSort = (field: keyof DisplayPatient) => {
@@ -64,7 +64,7 @@ export default function Home() {
           filteredPatients={filteredCount}
         />
         <section>
-          <AlertsList patients={patients} />
+          <AlertsList alerts={alertsList} />
           <StatsPanel patients={patients} />
         </section>
         <PatientsTable  
