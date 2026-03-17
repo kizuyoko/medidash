@@ -13,7 +13,7 @@ const SearchBar = ({ value, onChange }: Props) => {
   return (
     <form 
       onSubmit={handleSubmit}
-      className="space-x-2 border border-gray-400 rounded-lg flex items-center px-3 py-1 group focus-within:border-blue-400 focus-within:bg-blue-50 transition-colors">
+      className="space-x-2 border border-gray-400 rounded-lg flex flex-1 min-w-0 items-center px-3 py-1 group focus-within:border-blue-400 focus-within:bg-blue-50 transition-colors">
       <label htmlFor="search-input" className="sr-only">
         Search
       </label>
@@ -22,7 +22,7 @@ const SearchBar = ({ value, onChange }: Props) => {
         type="text"
         placeholder="Search patients..."
         aria-label="Search"
-        className="flex-1 bg-transparent outline-none"
+        className="flex-1 bg-transparent outline-none min-w-0 w-auto"
         value={value}
         onChange={e => onChange(e.target.value)}
       />
