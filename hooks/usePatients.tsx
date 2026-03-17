@@ -29,14 +29,22 @@ export default function usePatients({ rawPatients, searchText, statusFilter, sor
       }));
   }, [rawPatients]);
 
-  const patients = useMemo(() => {
+  const searchedPatients = useMemo(() => {
     return displayPatients
       .filter((p) => {
         const keyword = searchText.trim().toLowerCase();
         return !keyword || p.fullName.toLowerCase().includes(keyword);
-      })
-      .filter(p => !statusFilter || p.status === statusFilter)
-      .sort((a, b) => {
+      });
+  }, [displayPatients, searchText]);
+
+  const filteredPatients = useMemo(() => {
+    return searchedPatients
+    .filter(p => !statusFilter || p.status === statusFilter);
+  }, [searchedPatients, statusFilter]);
+
+  const sortedPatients = useMemo(() => {
+    return filteredPatients
+    .sort((a, b) => {
         if (!sortBy) return 0;
 
         const aValue = a[sortBy];
@@ -71,8 +79,10 @@ export default function usePatients({ rawPatients, searchText, statusFilter, sor
 
         return 0;
       });
-    }, [displayPatients, searchText, statusFilter, sortBy, sortDirection]);
 
+  }, [filteredPatients, sortBy, sortDirection])
+
+  const patients = sortedPatients;
   const totalPatients = rawPatients.length;
   const filteredCount = patients.length;
 
