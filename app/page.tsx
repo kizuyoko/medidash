@@ -32,13 +32,16 @@ export default function Home() {
       setSelectedPatient(patient);
   }
 
-  const { patients, totalPatients, filteredCount, alertsList, statusStats } = usePatients({
+  const { patients, totalPatients, filteredCount, alertsList, statusStats, loading, error } = usePatients({
     rawPatients,
     searchText: debouncedSearchText,
     statusFilter,
     sortBy,
     sortDirection,
    });
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   const handleSort = (field: keyof DisplayPatient) => {
     if (sortBy === field) {

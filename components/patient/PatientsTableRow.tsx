@@ -12,11 +12,11 @@ const PatientsTableRow = ({ patient, onClick }: Props) => {
             <tr onClick={onClick}>
                 <td><span>ID: </span>{patient.patientId}</td>
                 <td><span>Name: </span><b>{patient.fullName}</b></td>
-                <td><span>Age: </span>{patient.age}</td>
-                <td>
+                <td className="lg:text-right"><span>Age: </span>{patient.age}</td>
+                <td className="lg:text-center">
                     <span>Status: </span><StatusBadge status={patient.status} />
                 </td>
-                <td>
+                <td className="lg:text-right">
                     <span>Appointment: </span> {!patient.nextAppointment ? "—" : patient.nextAppointment}
                 </td>
                 <td><span>Condition: </span>{patient.condition}</td>

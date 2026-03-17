@@ -1,7 +1,7 @@
 "use client";
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { patients as rawPatients } from "@/data/fake_patients";
-import type { DisplayPatient, PatientStatus } from "@/types/patient";
+import type { Patient, DisplayPatient, PatientStatus } from "@/types/patient";
 import { generatePatientId, generateFullname, calculateAge, generateAgeText } from "@/utilities/data";
 
 type Props = {
@@ -12,7 +12,23 @@ type Props = {
     sortDirection: "asc" | "desc";
 }
 
-export default function usePatients({ rawPatients, searchText, statusFilter, sortBy, sortDirection }: Props) {
+export default function usePatients({ searchText, statusFilter, sortBy, sortDirection }: Props) {
+  const [rawPatients, setRawPatients] = useState<Patient[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("https://my.api.mockaroo.com/patient_dash.json?key=bc899f70")
+      .then(res => res.json())
+      .then(data => {
+        setRawPatients(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
 
   const displayPatients = useMemo(() => {
     return rawPatients
@@ -129,5 +145,7 @@ export default function usePatients({ rawPatients, searchText, statusFilter, sor
     filteredCount,
     alertsList,
     statusStats,
+    loading,
+    error,
   };
 };

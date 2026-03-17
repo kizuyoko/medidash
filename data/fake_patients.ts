@@ -3,8 +3,8 @@ import type { Patients } from "@/types/patient";
 export const patients: Patients = [
 {
   "id": 1,
-  "first_name": "Shanon",
-  "last_name": "Mocker",
+  "first_name": "Fake",
+  "last_name": "Fakeman",
   "middle_name": "Archie",
   "birthday": "1967-12-26",
   "gender": "male",
