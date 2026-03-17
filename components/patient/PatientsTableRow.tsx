@@ -10,16 +10,16 @@ const PatientsTableRow = ({ patient, onClick }: Props) => {
     return (
         <>
             <tr onClick={onClick}>
-                <td>{patient.patientId}</td>
-                <td><b>{patient.fullName}</b></td>
-                <td>{patient.age}</td>
+                <td><span>ID: </span>{patient.patientId}</td>
+                <td><span>Name: </span><b>{patient.fullName}</b></td>
+                <td><span>Age: </span>{patient.age}</td>
                 <td>
-                    <StatusBadge status={patient.status} />
+                    <span>Status: </span><StatusBadge status={patient.status} />
                 </td>
                 <td>
-                    {!patient.nextAppointment ? "—" : patient.nextAppointment}
+                    <span>Appointment: </span> {!patient.nextAppointment ? "—" : patient.nextAppointment}
                 </td>
-                <td>{patient.condition}</td>
+                <td><span>Condition: </span>{patient.condition}</td>
             </tr>
         </>
     );

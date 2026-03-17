@@ -142,7 +142,8 @@ input:-internal-autofill-selected {
 
     /* Table */
     table {
-        @apply border-collapse rounded-lg lg:border border-gray-300 min-w-full mt-4;
+        @apply border-separate rounded-lg lg:border border-gray-300 min-w-full mt-4 border-b-0;
+        border-spacing: 0;
     }
     table thead {
         @apply bg-gray-200 border-b lg:table-header-group border-gray-400 hidden;
@@ -161,10 +162,17 @@ input:-internal-autofill-selected {
         @apply bg-gray-50;
     }
     table tbody td {
-        @apply lg:border border-gray-200 px-4 py-1 lg:px-6 lg:py-4 whitespace-nowrap text-sm block lg:table-cell;
+        @apply lg:border-b border-gray-200 px-4 py-1 lg:px-4 lg:py-2 whitespace-nowrap text-sm lg:table-cell flex flex-wrap;
+    }
+    table tr td:not(:last-child),
+    table tr th:not(:last-child) {
+        @apply border-r border-gray-200;
     }
     table tbody td b {
         @apply font-medium;
+    }
+    table tbody td span {
+        @apply lg:hidden inline-block w-24
     }
 
     /* Footer */
