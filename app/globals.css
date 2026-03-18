@@ -155,7 +155,7 @@ input:-internal-autofill-selected {
         @apply lg:bg-white divide-y divide-gray-200 bg-none;
     }
     table tbody tr {
-        @apply hover:bg-gray-100 transition-colors cursor-pointer block lg:table-row border lg:border-none rounded-lg mb-4 lg:mb-0 py-1 lg:py-0;
+        @apply hover:bg-gray-100 transition-colors cursor-pointer block lg:table-row border lg:border-none rounded-lg mb-4 lg:mb-0 py-1 lg:py-0 border-gray-400 ;
     }
     
     table tbody tr:nth-child(odd) {

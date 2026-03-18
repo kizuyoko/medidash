@@ -13,6 +13,7 @@ import AlertsList from "@/components/alerts/AlertsList";
 import StatsPanel from "@/components/stats/StatsPanel";
 import Loading from "@/components/ui/Loading";
 import ErrorMessage from "@/components/ui/ErrorMessage";
+import Pagination from "@/components/ui/Pagination";
 
 export default function Home() {
   const [selectedPatient, setSelectedPatient] = useState<DisplayPatient | null>(null);
@@ -21,7 +22,8 @@ export default function Home() {
   const [statusFilter, setStatusFilter] = useState<PatientStatus | null>(null);
   const [sortBy, setSortBy] = useState<keyof DisplayPatient | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
-
+  const [currentPage, setCurrentPage] = useState(1);
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearchText(searchText);
@@ -41,6 +43,16 @@ export default function Home() {
     sortBy,
     sortDirection,
    });
+
+  /* Pagenation */
+  const pageSize = 10;
+
+  const pagionatedPatients = patients.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  ); 
+
+  const totalPages = Math.ceil(patients.length / pageSize);
 
   if (loading) return <Loading />;
   if (error) return <ErrorMessage message={error}/>;
@@ -67,15 +79,13 @@ export default function Home() {
           onSearchChange={setSearchText}
           totalPatients={totalPatients}
           filteredPatients={filteredCount}
-        />
-        <section>
-          <AlertsList alerts={alertsList} />
-          <StatsPanel stats={statusStats } />
-        </section>
+        />      
+        <AlertsList alerts={alertsList} />
+        <StatsPanel stats={statusStats } />
         <PatientsTable  
           onClick={setSelectedPatientHandlar}
           onSort={handleSort}
-          patients={patients} 
+          patients={pagionatedPatients} 
           sortBy={sortBy}
           sortDirection={sortDirection}
         />
@@ -89,6 +99,11 @@ export default function Home() {
             </Modal>
           )
           }
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />  
         <Footer /> 
       </main>
     </section>
