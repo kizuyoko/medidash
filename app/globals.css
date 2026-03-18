@@ -164,6 +164,9 @@ input:-internal-autofill-selected {
     table tbody td {
         @apply lg:border-b border-gray-200 px-4 py-1 lg:px-4 lg:py-2 whitespace-nowrap text-sm lg:table-cell flex flex-wrap;
     }
+    table tr:last-child {
+        @apply mb-0;
+    }
     table tr td:not(:last-child),
     table tr th:not(:last-child) {
         @apply border-r border-gray-200;
@@ -177,7 +180,7 @@ input:-internal-autofill-selected {
 
     /* Footer */
     footer {
-        @apply mt-4 text-center text-sm text-gray-500;
+        @apply mt-8 text-center text-sm text-gray-500;
     }
 
     footer ul {

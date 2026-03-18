@@ -1,5 +1,5 @@
 import Heading from "./Heading";
-import TableSkeleton from "./TableSkeleton ";
+import TableSkeleton from "./TableSkeleton";
 
 const Loading = () => {
   return (
