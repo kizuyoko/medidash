@@ -9,6 +9,8 @@
 ## Project Overview ##
 
 **MediDash** is a simple, single-page dashboard to manage patients.
+
+## Feature
 - Patient list (table)
 - Overview (Sticky sidebar)
 - Click a row -> Detail (Modal)
@@ -17,6 +19,10 @@
 - Pagination
 - StatsPanel 
 - AlertsList 
+- API (Mocaroo)
+- Error
+- Loading skelton
+- Documentation with Storybook
 - CRUD (Create / Edit / Delete)
 - Technology: React, Next.js, TypeScript, Hooks, Storybook, TailwindCSS, Fake Patients ([API](https://www.mockaroo.com/))
 
@@ -70,7 +76,7 @@
 - usePatients（API + filtering + sorting + loading）
 - useStats for stats calculation
 - Separate UI and logic
-- Cache
+- Cache (Tanstack Query)
 
 #### Week 7: Accessibility & Responsive Design ####
 - Semantic HTML

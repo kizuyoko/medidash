@@ -45,7 +45,7 @@ const StatsPanel = ({ stats } : Props) => {
         </li>
         <li className="lg:flex gap-4">
           <span className="inline-block w-20">Blood Type</span>
-          <ul className="flex gap-1 flex-wrap">
+          <ul className="flex gap-4 flex-wrap">
           {bloodTypes.map(type => (
             <li key={type}>
               {type}: {bloodStats[type as keyof typeof bloodStats]}

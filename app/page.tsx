@@ -11,6 +11,8 @@ import PatientDetailModal from "@/components/patient/PatientDetailModal";
 import usePatients from "@/hooks/usePatients";
 import AlertsList from "@/components/alerts/AlertsList";
 import StatsPanel from "@/components/stats/StatsPanel";
+import Loading from "@/components/ui/Loading";
+import ErrorMessage from "@/components/ui/ErrorMessage";
 
 export default function Home() {
   const [selectedPatient, setSelectedPatient] = useState<DisplayPatient | null>(null);
@@ -40,8 +42,8 @@ export default function Home() {
     sortDirection,
    });
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <Loading />;
+  if (error) return <ErrorMessage message={error}/>;
 
   const handleSort = (field: keyof DisplayPatient) => {
     if (sortBy === field) {
@@ -78,14 +80,14 @@ export default function Home() {
           sortDirection={sortDirection}
         />
         {
-            selectedPatient && (
-                <Modal
-                    isOpen={true} 
-                    onClose={() => setSelectedPatient(null)}
-                >
-                    <PatientDetailModal patient={selectedPatient} />
-                </Modal>
-            )
+          selectedPatient && (
+            <Modal
+              isOpen={true} 
+              onClose={() => setSelectedPatient(null)}
+            >
+              <PatientDetailModal patient={selectedPatient} />
+            </Modal>
+          )
           }
         <Footer /> 
       </main>
