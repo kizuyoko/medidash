@@ -20,8 +20,6 @@ type Story = StoryObj<typeof ErrorMessage>;
 
 export const Default: Story = {
   render: () => (
-    <div className="max-w-md w-full">
-      <ErrorMessage message="error" />
-  </div>
+    <ErrorMessage message="⚠ This is a test error message for Storybook, not real!" />
   ),
 };

@@ -20,8 +20,6 @@ type Story = StoryObj<typeof TableSkeleton>;
 
 export const Default: Story = {
   render: () => (
-    <div className="max-w-md w-full">
-      <TableSkeleton />
-  </div>
+    <TableSkeleton />
   ),
 };
