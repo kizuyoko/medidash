@@ -13,7 +13,7 @@
   --color-border-total: theme(colors.blue.200);
   /* Waiting */
   --color-title-waiting: theme(colors.amber.700);
-  --color-text-waiting: theme(colors.amber.600);
+  --color-text-waiting: theme(colors.amber.700);
   --color-bg-waiting: theme(colors.amber.50);
   --color-border-waiting: theme(colors.amber.300);
   --color-bg-status-waiting: theme(colors.amber.100);
@@ -27,7 +27,7 @@
   --color-text-status-in_consult: theme(colors.purple.800);
   /* Done */
   --color-title-done: theme(colors.green.700);
-  --color-text-done: theme(colors.green.600);
+  --color-text-done: theme(colors.green.700);
   --color-bg-done: theme(colors.green.50);
   --color-border-done: theme(colors.green.300);
   --color-bg-status-done: theme(colors.green.100);
