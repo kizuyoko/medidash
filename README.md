@@ -4,8 +4,15 @@
 **MediDash** is a simple, single-page dashboard to manage patients.
 **Timeline:** 2 months (Weekdays, 1-2 hours/day)  
 
-![Dashboard Overview](public/screenshot_dashboard.png)
-![Patient Detail Modal](public/screenshot_modal.png)
+## Preview
+<p align="center">
+  <img src="public/screenshot_dashboard.png" width="100%">
+  <img src="public/screenshot_modal.png" width="100%">
+</p>
+<p align="center">  
+  <img src="public/screenshot_tablet.png" width="60%">
+  <img src="public/screenshot_mobile.png" width="35%">
+</p> 
 
 ## Feature
 - Patient list (table)
