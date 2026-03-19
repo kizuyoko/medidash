@@ -1,14 +1,11 @@
-# MediDash #
-**Timeline:** 2 months (Weekdays, 1-2 hours/day)  
-**Project:** Simple patient management dashboard for hospital staff.
+# MediDash
 
+## Project Overview
+**MediDash** is a simple, single-page dashboard to manage patients.
+**Timeline:** 2 months (Weekdays, 1-2 hours/day)  
 
 ![Dashboard Overview](public/screenshot_dashboard.png)
 ![Patient Detail Modal](public/screenshot_modal.png)
-
-## Project Overview ##
-
-**MediDash** is a simple, single-page dashboard to manage patients.
 
 ## Feature
 - Patient list (table)
@@ -26,7 +23,14 @@
 - CRUD (Create / Edit / Delete)
 - Technology: React, Next.js, TypeScript, Hooks, Storybook, TailwindCSS, Fake Patients ([API](https://www.mockaroo.com/))
 
-## Weekly Plan (8 weeks) ##
+## Tech Stack
+- React 19 and hooks (useState, useEffect, useMemo)
+- NextJS
+- TailwindCSS
+- Tanstack Query
+- Vercel
+
+## Weekly Plan (8 weeks) 
 
 ### Week 0: Preparation ###
 - Brainstorm

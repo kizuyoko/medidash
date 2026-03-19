@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Work_Sans, Inter } from "next/font/google";
 import "./globals.css";
+import Providers from "./providers";
 
 const work_Sans = Work_Sans({
   variable: "--font-title",
@@ -27,7 +28,9 @@ export default function RootLayout({
       <body
         className={`${work_Sans.variable} ${inter.variable} antialiased`}
       >
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

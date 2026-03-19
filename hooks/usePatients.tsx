@@ -1,8 +1,10 @@
 "use client";
-import { useMemo, useEffect, useState } from "react";
+import { useMemo } from "react";
 import { patients as rawPatients } from "@/data/fake_patients";
 import type { Patient, DisplayPatient, PatientStatus } from "@/types/patient";
 import { generatePatientId, generateFullname, calculateAge, generateAgeText } from "@/utilities/data";
+import { useQuery } from "@tanstack/react-query";
+import { fetchPatients } from "@/lib/api/patients";
 
 type Props = {
     rawPatients: typeof rawPatients;
@@ -13,25 +15,18 @@ type Props = {
 }
 
 export default function usePatients({ searchText, statusFilter, sortBy, sortDirection }: Props) {
-  const [rawPatients, setRawPatients] = useState<Patient[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetch("https://my.api.mockaroo.com/patient_dash.json?key=bc899f70")
-      .then(res => res.json())
-      .then(data => {
-        setRawPatients(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []);
+  const { data, isLoading, error } = useQuery<Patient[]>({
+    queryKey: ["patients"],
+    queryFn: fetchPatients,
+  });
+
+  const rawPatientsData = useMemo(() => {
+    return data ?? [];
+  }, [data]);
 
   const displayPatients = useMemo(() => {
-    return rawPatients
+    return rawPatientsData
       .map((p) => ({
         ...p, 
         middle_name: p.middle_name ?? "",
@@ -43,7 +38,7 @@ export default function usePatients({ searchText, statusFilter, sortBy, sortDire
         age: calculateAge(p.birthday),
         ageText: generateAgeText(p.birthday),
       }));
-  }, [rawPatients]);
+  }, [rawPatientsData]);
 
   const searchedPatients = useMemo(() => {
     return displayPatients
@@ -145,7 +140,7 @@ export default function usePatients({ searchText, statusFilter, sortBy, sortDire
     filteredCount,
     alertsList,
     statusStats,
-    loading,
+    loading: isLoading,
     error,
   };
 };
