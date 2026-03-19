@@ -55,7 +55,10 @@ export default function Home() {
   const totalPages = Math.ceil(patients.length / pageSize);
 
   if (loading) return <Loading />;
-  if (error) return <ErrorMessage message={error}/>;
+  if (error) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return <ErrorMessage message={message} />;
+  }
 
   const handleSort = (field: keyof DisplayPatient) => {
     if (sortBy === field) {
