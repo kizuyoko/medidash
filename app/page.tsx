@@ -14,6 +14,8 @@ import StatsPanel from "@/components/stats/StatsPanel";
 import Loading from "@/components/ui/Loading";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import Pagination from "@/components/ui/Pagination";
+//import { useQueryClient } from "@tanstack/react-query";
+//import Button from "@/components/ui/Button";
 
 export default function Home() {
   const [selectedPatient, setSelectedPatient] = useState<DisplayPatient | null>(null);
@@ -23,6 +25,8 @@ export default function Home() {
   const [sortBy, setSortBy] = useState<keyof DisplayPatient | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [currentPage, setCurrentPage] = useState(1);
+
+  //const queryClient = useQueryClient();
   
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -76,6 +80,14 @@ export default function Home() {
         setStatusFilter={setStatusFilter}
       />
       <main>
+        {/* Refetch 
+        <Button
+          onClick={() => {
+            queryClient.invalidateQueries({ queryKey: ["patients"]});
+          }}
+          className="float-right"
+        >Refetch!</Button>
+       */}
         <Header 
           searchText={searchText}
           statusFilter={statusFilter}

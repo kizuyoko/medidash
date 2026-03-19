@@ -19,6 +19,7 @@ export default function usePatients({ searchText, statusFilter, sortBy, sortDire
   const { data, isLoading, error } = useQuery<Patient[]>({
     queryKey: ["patients"],
     queryFn: fetchPatients,
+    staleTime: 1000 * 60 * 60 , //one hour
   });
 
   const rawPatientsData = useMemo(() => {
