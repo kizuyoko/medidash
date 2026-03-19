@@ -14,6 +14,7 @@ import StatsPanel from "@/components/stats/StatsPanel";
 import Loading from "@/components/ui/Loading";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import Pagination from "@/components/ui/Pagination";
+import Heading from "@/components/ui/Heading";
 //import { useQueryClient } from "@tanstack/react-query";
 //import Button from "@/components/ui/Button";
 
@@ -94,31 +95,41 @@ export default function Home() {
           onSearchChange={setSearchText}
           totalPatients={totalPatients}
           filteredPatients={filteredCount}
-        />      
-        <AlertsList alerts={alertsList} />
-        <StatsPanel stats={statusStats } />
-        <PatientsTable  
-          onClick={setSelectedPatientHandlar}
-          onSort={handleSort}
-          patients={pagionatedPatients} 
-          sortBy={sortBy}
-          sortDirection={sortDirection}
         />
-        {
-          selectedPatient && (
+        { alertsList.some(alert => alert.count > 0) && (
+            <AlertsList alerts={alertsList} />
+        )}
+        { Object.values(statusStats.statusStats).some(v => v > 0) && (
+            <StatsPanel stats={statusStats} />
+        )}
+        { pagionatedPatients.length === 0 ? (
+          <Heading level={3} className="text-center p-4">
+            No patients found.
+          </Heading>
+        ) : (
+          <PatientsTable
+            onClick={setSelectedPatientHandlar}
+            onSort={handleSort}
+            patients={pagionatedPatients}
+            sortBy={sortBy}
+            sortDirection={sortDirection}
+          />
+        )}
+        { selectedPatient && (
             <Modal
               isOpen={true} 
               onClose={() => setSelectedPatient(null)}
             >
               <PatientDetailModal patient={selectedPatient} />
             </Modal>
-          )
-          }
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />  
+        )}
+        { totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />  
+        )}
         <Footer /> 
       </main>
     </section>
