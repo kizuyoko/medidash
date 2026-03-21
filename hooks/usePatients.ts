@@ -55,7 +55,7 @@ export default function usePatients({ searchText, statusFilter, sortBy, sortDire
   }, [searchedPatients, statusFilter]);
 
   const sortedPatients = useMemo(() => {
-    return filteredPatients
+    return [...filteredPatients]
     .sort((a, b) => {
         if (!sortBy) return 0;
 
