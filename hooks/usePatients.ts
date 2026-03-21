@@ -4,6 +4,7 @@ import type { Patient, DisplayPatient, PatientStatus } from "@/types/patient";
 import { generatePatientId, generateFullname, calculateAge, generateAgeText } from "@/utilities/data";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPatients } from "@/lib/api/patients";
+import { useStats } from "./useStats";
 
 type Props = {
     searchText: string; 
@@ -104,30 +105,7 @@ export default function usePatients({ searchText, statusFilter, sortBy, sortDire
     ];
   }, [sortedPatients]);
 
-  const statusStats = useMemo(() => {
-    const statusStats = {
-      waiting: 0,
-      in_consult: 0,
-      done: 0,
-      cancelled: 0,
-    };
-    const genderStats = {
-      male: 0,
-      female: 0,
-      unknown: 0,
-    };
-    const bloodStats = {
-      'A+': 0, 'A-': 0, 'B+': 0, 'B-': 0, 'O+': 0, 'O-': 0, 'AB+': 0, 'AB-': 0,  Unknown: 0,
-    };
-
-    sortedPatients.forEach(p => {
-      statusStats[p.status] ++;
-      genderStats[p.gender]++;
-      bloodStats[p.bloodType]++;
-    });
-
-    return { statusStats, genderStats, bloodStats};
-  }, [sortedPatients]);
+  const { statusStats} = useStats(sortedPatients);
 
   const patients = sortedPatients;
   const totalPatients = rawPatientsData.length;
