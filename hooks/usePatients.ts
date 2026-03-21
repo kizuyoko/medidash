@@ -5,6 +5,7 @@ import { generatePatientId, generateFullname, calculateAge, generateAgeText } fr
 import { useQuery } from "@tanstack/react-query";
 import { fetchPatients } from "@/lib/api/patients";
 import { useStats } from "./useStats";
+import { useAlerts } from "./useAlerts";
 
 type Props = {
     searchText: string; 
@@ -93,17 +94,7 @@ export default function usePatients({ searchText, statusFilter, sortBy, sortDire
 
   }, [filteredPatients, sortBy, sortDirection])
 
-  const alertsList = useMemo(() => {
-    const noAppointment = sortedPatients.filter(p => !p.nextAppointment).length;
-    const elderly = sortedPatients.filter(p => p.age >= 80).length
-    const critical = sortedPatients.filter(p => p.condition === "Critical").length
-
-    return [
-      { label: "patients without appointment", count: noAppointment },
-      { label: "patients in critical condition", count: critical },
-      { label: "patients older than 80", count: elderly },
-    ];
-  }, [sortedPatients]);
+  const { alertsList } = useAlerts(sortedPatients);
 
   const { statusStats} = useStats(sortedPatients);
 
