@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
-import { patients as rawPatients } from "@/data/fake_patients";
 import PatientsTable from "@/components/patient/PatientsTable";
 import type { DisplayPatient, PatientStatus } from "@/types/patient";
 import Modal from "@/components/ui/Modal";
@@ -15,8 +14,6 @@ import Loading from "@/components/ui/Loading";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import Pagination from "@/components/ui/Pagination";
 import Heading from "@/components/ui/Heading";
-//import { useQueryClient } from "@tanstack/react-query";
-//import Button from "@/components/ui/Button";
 
 export default function Home() {
   const [selectedPatient, setSelectedPatient] = useState<DisplayPatient | null>(null);
@@ -42,7 +39,6 @@ export default function Home() {
   }
 
   const { patients, totalPatients, filteredCount, alertsList, statusStats, loading, error } = usePatients({
-    rawPatients,
     searchText: debouncedSearchText,
     statusFilter,
     sortBy,
@@ -77,7 +73,7 @@ export default function Home() {
   return (
     <section className="body">
       <Sidebar 
-        patients={rawPatients}
+        patients={patients}
         setStatusFilter={setStatusFilter}
       />
       <main>

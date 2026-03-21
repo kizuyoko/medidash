@@ -1,13 +1,11 @@
 "use client";
 import { useMemo } from "react";
-import { patients as rawPatients } from "@/data/fake_patients";
 import type { Patient, DisplayPatient, PatientStatus } from "@/types/patient";
 import { generatePatientId, generateFullname, calculateAge, generateAgeText } from "@/utilities/data";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPatients } from "@/lib/api/patients";
 
 type Props = {
-    rawPatients: typeof rawPatients;
     searchText: string; 
     statusFilter: PatientStatus | null;
     sortBy: keyof DisplayPatient | null;
@@ -132,7 +130,7 @@ export default function usePatients({ searchText, statusFilter, sortBy, sortDire
   }, [sortedPatients]);
 
   const patients = sortedPatients;
-  const totalPatients = rawPatients.length;
+  const totalPatients = rawPatientsData.length;
   const filteredCount = patients.length;
 
   return {

@@ -2,6 +2,7 @@
 
 ## Project Overview
 **MediDash** is a simple, single-page dashboard to manage patients.
+
 **Timeline:** 2 months (Weekdays, 1-2 hours/day)  
 
 ## Preview
