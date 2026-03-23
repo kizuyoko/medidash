@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 import { PatientStatus } from '@/types/patient';
 
 type SidebarCardProps = {
@@ -7,7 +7,7 @@ type SidebarCardProps = {
   variant?: 'total' | PatientStatus;
   onClick?: () => void;
   className?: string;
-} & HTMLAttributes<HTMLDivElement>;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const SidebarCard = ({
   label,
@@ -19,8 +19,8 @@ const SidebarCard = ({
 }: SidebarCardProps) => {
   
   return (
-    <div 
-      className={`card cursor-pointer min-w-30 ${className}`} 
+    <button 
+      className={`card cursor-pointer min-w-30 text-left ${className}`} 
       style={{
         backgroundColor: `var(--color-bg-${variant})`,
         borderColor: `var(--color-border-${variant})`,
@@ -40,7 +40,7 @@ const SidebarCard = ({
       >
         {number}
       </div>
-    </div>
+    </button>
   );
 };
 

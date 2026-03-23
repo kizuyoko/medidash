@@ -2,7 +2,7 @@
 import type { ReactNode } from "react";
 import Button from "./Button";
 import Heading from "./Heading";
-import { useEffect } from "react";
+import { useEffect, useRef  } from "react";
 import '@/app/globals.css';
 
 type ModalProps = {
@@ -15,9 +15,15 @@ type ModalProps = {
 const Modal = ({
   isOpen, onClose, title, children
 }: ModalProps) => {
-
+  const modalRef = useRef<HTMLDivElement>(null);
+  
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      document.body.style.overflow = "auto";
+      return;
+    };
+
+    document.body.style.overflow = "hidden";
 
     const handleKeyDown = (e:KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -28,6 +34,7 @@ const Modal = ({
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      document.body.style.overflow = "hidden";
       window.window.removeEventListener("keydown", handleKeyDown);
     };
 
@@ -37,6 +44,7 @@ const Modal = ({
 
   return (
     <div 
+        ref={modalRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="patient-detail"
@@ -61,6 +69,7 @@ const Modal = ({
         <div className="flex justify-end">
           <Button
             onClick={onClose}
+            aria-label="Close dialog"
           >
             Close
           </Button>

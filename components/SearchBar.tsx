@@ -21,18 +21,18 @@ const SearchBar = ({ value, onChange }: Props) => {
         id="search-input"
         type="text"
         placeholder="Search patients..."
-        aria-label="Search"
-        className="flex-1 bg-transparent outline-none min-w-0 w-auto"
+        className="flex-1 bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-400 min-w-0 w-auto"
         value={value}
         onChange={e => onChange(e.target.value)}
       />
       <button
         type="submit"
+        aria-label="Search patients"
         className="flex items-center hover:scale-110 transition-transform w-5 h-5 relative"
       >
         <Image
           src="/search.svg"
-          alt="Search"
+          alt=""
           width={20}
           height={20}
           className="absolute top-0 right-0 opacity-60"

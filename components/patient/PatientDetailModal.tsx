@@ -13,7 +13,7 @@ const PatientDetailModal = ({ patient }: PatientProps) => {
 
     return (
         <section className="patient-modal">
-            <Heading>
+            <Heading id="patient-detail">
                 {patient.fullName}  
                 <span className="pl-3 text-sm font-normal">
                     {patient.patientId}

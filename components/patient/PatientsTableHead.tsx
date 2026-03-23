@@ -26,12 +26,36 @@ const PatientsTableHead = ({ onSort, sortBy, sortDirection }: Props) => {
     return (
         <thead>
             <tr>
-                <th onClick={() => onSort('patientId')} className={thClass('patientId')} aria-sort={getAriaSort('patientId')}>Patient ID <span className="pl-2">{renderArrow('patientId')}</span></th>
-                <th onClick={() => onSort('fullName')} className={thClass('fullName')} aria-sort={getAriaSort('fullName')}>Name <span className="pl-2">{renderArrow('fullName')} </span></th>
-                <th onClick={() => onSort('age')} className={thClass('age')} aria-sort={getAriaSort('age')}>Age <span className="pl-2">{renderArrow('age')}</span></th>
-                <th onClick={() => onSort('status')} className={thClass('status')} aria-sort={getAriaSort('status')}>Status <span className="pl-2">{renderArrow('status')}</span></th>
-                <th onClick={() => onSort('nextAppointment')} className={thClass('nextAppointment')} aria-sort={getAriaSort('nextAppointment')}>Next Appointment <span className="pl-2">{renderArrow('nextAppointment')}</span></th>
-                <th onClick={() => onSort('condition')} className={thClass('condition')} aria-sort={getAriaSort('condition')}>Condition <span className="pl-2">{renderArrow('condition')}</span></th>
+                <th scope="col" aria-sort={getAriaSort('patientId') ?? 'none'}>
+                    <button onClick={() => onSort('patientId')}>
+                        Patient ID {renderArrow('patientId')}
+                    </button>
+                </th>
+                <th scope="col" aria-sort={getAriaSort('fullName') ?? 'none'}>
+                    <button onClick={() => onSort('fullName')}>
+                        Name {renderArrow('fullName')}
+                    </button>
+                </th>
+                <th scope="col" aria-sort={getAriaSort('age') ?? 'none'}>
+                    <button onClick={() => onSort('age')}>
+                        Age {renderArrow('age')}
+                    </button>
+                </th>
+                <th scope="col" aria-sort={getAriaSort('status') ?? 'none'}>
+                    <button onClick={() => onSort('status')}>
+                        Status {renderArrow('status')}
+                    </button>
+                </th>
+                <th scope="col" aria-sort={getAriaSort('nextAppointment') ?? 'none'}>
+                    <button onClick={() => onSort('nextAppointment')}>
+                        Next Appointment {renderArrow('nextAppointment')}
+                    </button>
+                </th>
+                <th scope="col" aria-sort={getAriaSort('condition') ?? 'none'}>
+                    <button onClick={() => onSort('condition')}>
+                        Condition {renderArrow('condition')}
+                    </button>
+                </th>
             </tr>
         </thead>
     );

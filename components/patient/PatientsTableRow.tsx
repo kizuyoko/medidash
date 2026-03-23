@@ -7,19 +7,39 @@ type Props = {
 };
 
 const PatientsTableRow = ({ patient, onClick }: Props) => {
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onClick();
+        }
+    };
+
     return (
         <>
-            <tr onClick={onClick}>
-                <td><span>ID: </span>{patient.patientId}</td>
-                <td><span>Name: </span><b>{patient.fullName}</b></td>
-                <td className="lg:text-right"><span>Age: </span>{patient.age}</td>
-                <td className="lg:text-center">
+            <tr 
+                tabIndex={0}
+                onClick={onClick} 
+                onKeyDown={handleKeyDown} 
+                role="row"
+            >
+                <td aria-label="Patient ID">
+                    <span>ID: </span>{patient.patientId}
+                </td>
+                <td aria-label="Name">
+                    <span>Name: </span><b>{patient.fullName}</b>
+                </td>
+                <td aria-label="Age" className="lg:text-right">
+                    <span>Age: </span>{patient.age}
+                </td>
+                <td  aria-label="Status" className="lg:text-center">
                     <span>Status: </span><StatusBadge status={patient.status} />
                 </td>
-                <td className="lg:text-right">
+                <td aria-label="Appointment" className="lg:text-right">
                     <span>Appointment: </span> {!patient.nextAppointment ? "—" : patient.nextAppointment}
                 </td>
-                <td><span>Condition: </span>{patient.condition}</td>
+                <td aria-label="Condition">
+                    <span>Condition: </span>{patient.condition}
+                </td>
             </tr>
         </>
     );

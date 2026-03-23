@@ -14,7 +14,7 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const baseClasses =
-    "px-4 py-2 rounded rounded-full font-medium shadow focus:outline-none focus:ring-2 focus:ring-offset-1 transition-colors";
+    "px-4 py-2 rounded rounded-full font-medium shadow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors";
   const disabledClasses =
     "bg-[var(--color-btn-disabled)] text-[var(--color-btn-disabled-text)] cursor-not-allowed";  
 

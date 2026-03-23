@@ -52,7 +52,6 @@
   /* Disabled */
   --color-btn-disabled: theme(colors.gray.300);
   --color-btn-disabled-text: theme(colors.gray.400);
-
 }
 
 @theme inline {
@@ -149,13 +148,16 @@ input:-internal-autofill-selected {
         @apply bg-gray-200 border-b lg:table-header-group border-gray-400 hidden;
     }
     table thead th {
-        @apply px-6 py-3 text-center text-xs font-medium text-gray-800 uppercase tracking-wider cursor-pointer;
+        @apply text-center text-xs font-medium text-gray-800 uppercase tracking-wider cursor-pointer;
+    }
+    table thead th button {
+        @apply w-full px-6 py-3 uppercase cursor-pointer;
     }
     table tbody {
         @apply lg:bg-white divide-y divide-gray-200 bg-none;
     }
     table tbody tr {
-        @apply hover:bg-gray-100 transition-colors cursor-pointer block lg:table-row border lg:border-none rounded-lg mb-4 lg:mb-0 py-1 lg:py-0 border-gray-400 ;
+        @apply hover:bg-gray-100 transition-colors cursor-pointer block lg:table-row border lg:border-none rounded-lg mb-4 lg:mb-0 py-1 lg:py-0 border-gray-400 focus:outline-none focus:ring-2;
     }
     
     table tbody tr:nth-child(odd) {
