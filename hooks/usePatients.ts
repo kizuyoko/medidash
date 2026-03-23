@@ -1,11 +1,10 @@
 "use client";
 import { useMemo } from "react";
-import type { Patient, DisplayPatient, PatientStatus } from "@/types/patient";
+import type {  DisplayPatient, PatientStatus } from "@/types/patient";
 import { generatePatientId, generateFullname, calculateAge, generateAgeText } from "@/utilities/data";
-import { useQuery } from "@tanstack/react-query";
-import { fetchPatients } from "@/lib/api/patients";
 import { useStats } from "./useStats";
 import { useAlerts } from "./useAlerts";
+import usePatientsData from "./usePatientsData";
 
 type Props = {
     searchText: string; 
@@ -16,11 +15,7 @@ type Props = {
 
 export default function usePatients({ searchText, statusFilter, sortBy, sortDirection }: Props) {
 
-  const { data, isLoading, error } = useQuery<Patient[]>({
-    queryKey: ["patients"],
-    queryFn: fetchPatients,
-    staleTime: 1000 * 60 * 60 , //one hour
-  });
+   const { data, isLoading, error } = usePatientsData();
 
   const rawPatientsData = useMemo(() => {
     return data ?? [];

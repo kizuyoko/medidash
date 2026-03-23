@@ -24,7 +24,7 @@
 - Pagination
 - StatsPanel 
 - AlertsList 
-- API (Mocaroo)
+- API (Mockaroo)
 - Error
 - Loading skelton
 - Documentation with Storybook
