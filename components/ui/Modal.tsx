@@ -16,12 +16,14 @@ const Modal = ({
   isOpen, onClose, title, children
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   
   useEffect(() => {
     if (!isOpen) {
       document.body.style.overflow = "auto";
       return;
     };
+    closeButtonRef.current?.focus();
 
     document.body.style.overflow = "hidden";
 
@@ -70,6 +72,7 @@ const Modal = ({
           <Button
             onClick={onClose}
             aria-label="Close dialog"
+            ref={closeButtonRef}
           >
             Close
           </Button>

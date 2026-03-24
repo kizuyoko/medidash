@@ -1,18 +1,21 @@
-import type { ButtonHTMLAttributes } from "react";
-
+import type { ButtonHTMLAttributes, ForwardedRef } from "react";
+import { forwardRef } from "react";
 
 type ButtonProps = {
   variant?: "primary" | "secondary";
   disabled?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button = ({
-  variant = "primary",
-  disabled = false,
-  className = "",
-  onClick,
-  ...props
-}: ButtonProps) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      variant = "primary",
+      disabled = false,
+      className = "",
+      onClick,
+      ...props
+    }, ref: ForwardedRef<HTMLButtonElement>
+  ) => {
   const baseClasses =
     "px-4 py-2 rounded rounded-full font-medium shadow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors";
   const disabledClasses =
@@ -29,11 +32,14 @@ const Button = ({
 
   return (
     <button
+      ref= {ref}
       className={`${baseClasses} ${variantClasses[variant]} ${className}`}
       disabled={disabled}
       onClick={onClick}
       {...props}
     />
   );
-};
+  }
+);
+Button.displayName = "Button";
 export default Button;
