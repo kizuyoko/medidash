@@ -4,6 +4,7 @@
 /* Body */
   --background: theme(colors.gray.50);
   --foreground: theme(colors.gray.900);
+  --color-bg-inner: theme(colors.white);
 
 /* Status */
   /* Total */
@@ -52,6 +53,15 @@
   /* Disabled */
   --color-btn-disabled: theme(colors.gray.300);
   --color-btn-disabled-text: theme(colors.gray.400);
+
+/* Alert */
+  --color-bg-alert: theme(colors.red.50); 
+	--color-text-alert: theme(colors.red.800); 
+  --color-border-alert: theme(colors.red.400);
+/* Stats */
+	--color-bg-stats: theme(colors.slate-50);	
+/* Table head */
+	--color-bg-tbl-head: theme(colors.gray.200);
 }
 
 @theme inline {
@@ -65,6 +75,50 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --color-bg-inner: theme(colors.gray.900);
+
+    /* Status */
+  /* Total */
+  --color-title-total: theme(colors.blue.50);
+  --color-text-total: theme(colors.blue.50);
+  --color-bg-total: theme(colors.blue.900);
+  --color-border-total: theme(colors.blue.800);
+  /* Waiting */
+  --color-title-waiting: theme(colors.amber.50);
+  --color-text-waiting: theme(colors.amber.50);
+  --color-bg-waiting: theme(colors.amber.900);
+  --color-border-waiting: theme(colors.amber.800);
+  --color-bg-status-waiting: theme(colors.amber.800);
+  --color-text-status-waiting: theme(colors.amber.50);
+  /* In Consult */
+  --color-title-in_consult: theme(colors.purple.50);
+  --color-text-in_consult: theme(colors.purple.50);
+  --color-bg-in_consult: theme(colors.purple.900);
+  --color-border-in_consult: theme(colors.purple.800);
+  --color-bg-status-in_consult: theme(colors.purple.800);
+  --color-text-status-in_consult: theme(colors.purple.50);
+  /* Done */
+  --color-title-done: theme(colors.green.50);
+  --color-text-done: theme(colors.green.50);
+  --color-bg-done: theme(colors.green.900);
+  --color-border-done: theme(colors.green.800);
+  --color-bg-status-done: theme(colors.green.800);
+  --color-text-status-done: theme(colors.green.50);
+  /* Cancelled */
+  --color-title-cancelled: theme(colors.gray.50);
+  --color-text-cancelled: theme(colors.gray.50);
+  --color-bg-cancelled: theme(colors.gray.800);
+  --color-border-cancelled: theme(colors.gray.800);
+  --color-bg-status-cancelled: theme(colors.gray.800);
+  --color-text-status-cancelled: theme(colors.gray.50);
+	/* Alert */
+  --color-bg-alert: theme(colors.red.900); 
+  --color-text-alert: theme(colors.red.50); 
+	--color-border-alert: theme(colors.red.50);
+	/* Stats */
+	--color-bg-stats: theme(colors.slate.900);
+	/* Table head */
+	--color-bg-tbl-head: theme(colors.gray.900);
   }
 }
 
@@ -79,7 +133,7 @@ h1, h2, h3, h4 {
 }
 
 aside {
-    @apply bg-white p-4 lg:p-8 border-gray-200  border-b lg:border-r lg:border-b-0 lg:max-w-sm;
+    @apply bg-(--color-bg-inner) p-4 lg:p-8 border-gray-200  border-b lg:border-r lg:border-b-0 lg:max-w-sm;
 }
 
 main {
@@ -123,11 +177,11 @@ input:-internal-autofill-selected {
     }
 
     .modal-box {
-        @apply relative z-10 bg-white rounded-lg shadow-lg max-w-full min-w-2xs sm:min-w-sm m-6 max-h-[80vh] flex flex-col p-6;
+        @apply relative z-10 bg-(--color-bg-inner) rounded-lg shadow-lg max-w-full min-w-2xs sm:min-w-sm m-6 max-h-[80vh] flex flex-col p-6;
     }
 
     .patient-modal .card {
-        @apply bg-gray-50 border-0;
+        @apply bg-(--background) border-0;
     }
     .patient-modal section {
         @apply mt-6;
@@ -145,23 +199,22 @@ input:-internal-autofill-selected {
         border-spacing: 0;
     }
     table thead {
-        @apply bg-gray-200 border-b lg:table-header-group border-gray-400 hidden;
+        @apply bg-(--color-bg-tbl-head) border-b lg:table-header-group border-gray-400 hidden;
     }
     table thead th {
-        @apply text-center text-xs font-medium text-gray-800 uppercase tracking-wider cursor-pointer;
+        @apply text-center text-xs font-medium uppercase tracking-wider cursor-pointer;
     }
     table thead th button {
         @apply w-full px-6 py-3 uppercase cursor-pointer;
     }
     table tbody {
-        @apply lg:bg-white divide-y divide-gray-200 bg-none;
+        @apply lg:bg-(--color-bg-inner) divide-y divide-gray-200 bg-none;
     }
     table tbody tr {
-        @apply hover:bg-gray-100 transition-colors cursor-pointer block lg:table-row border lg:border-none rounded-lg mb-4 lg:mb-0 py-1 lg:py-0 border-gray-400 focus:outline-none focus:ring-2;
+        @apply hover:bg-(--color-bg-status-cancelled) transition-colors cursor-pointer block lg:table-row border lg:border-none rounded-lg mb-4 lg:mb-0 py-1 lg:py-0 border-gray-400 focus:outline-none focus:ring-2;
     }
-    
     table tbody tr:nth-child(odd) {
-        @apply bg-gray-50;
+        @apply bg-(--color-bg-cancelled);
     }
     table tbody td {
         @apply lg:border-b border-gray-200 px-4 py-1 lg:px-4 lg:py-2 whitespace-nowrap text-sm lg:table-cell flex flex-wrap;

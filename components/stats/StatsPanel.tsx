@@ -22,7 +22,7 @@ const StatsPanel = ({ stats } : Props) => {
   const bloodTypes = ["A+","A-","B+","B-","O+","O-","AB+","AB-"];
 
   return (
-    <section className="w-full my-2 border border-slate-400 rounded-lg p-2 px-4 bg-slate-50 text-sm">
+    <section className="w-full my-2 border border-slate-400 rounded-lg p-2 px-4 bg-(--color-bg-stats) text-sm">
       <ul className="flex lg:flex-col gap-4 lg:gap-2 flex-wrap">
         <li className="lg:flex gap-4"><span className="inline-block w-20">Status</span>
           <ul className="lg:flex gap-4">
