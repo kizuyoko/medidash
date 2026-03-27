@@ -37,12 +37,13 @@ const PatientForm = () => {
         value={form.lastName}
         onChange={handleChange}
       />
-      <select
-        className="input-form"
-      >
-        <option value="waiting">Waiting</option>
-        <option value="in_consult">In consult</option>
-      </select>
+      <InputForm
+        type="select"
+        id="status"
+        name="Status"
+        value={form.status}
+        onChange={handleChange}
+      />
       <Button
         variant="secondary"
         disabled
