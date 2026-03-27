@@ -6,6 +6,7 @@ import Modal from "./ui/Modal";
 import SearchBar from "./SearchBar";
 import { useState } from "react";
 import type { PatientStatus } from "@/types/patient";
+import PatientForm from "./patient/PatientForm";
 
 type Props = {
   searchText: string;
@@ -59,9 +60,9 @@ const Header = ({ searchText, statusFilter, onSearchChange, totalPatients, filte
           <Modal
                 isOpen={open}
                 onClose={() => setOpen(false)}
-                title="Patient Info"
+                title="Create a patient"
             >
-                <p>Coming Soon...</p>
+                <PatientForm />
             </Modal>
         </header>  
     )
