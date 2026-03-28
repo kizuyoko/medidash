@@ -1,17 +1,14 @@
 import { useState } from "react";
 import Button from "../ui/Button";
 import InputForm from "../ui/InputForm";
+import { NewPatient, PatientStatus } from "@/types/patient";
 
-type NewPatient =  {
-  firstName: string;
-  lastName: string;
-  status: string;
-  id: string;
+type Props = {
+  createPatient: (data: NewPatient) => void;
+  setIsOpen: (open: boolean) => void;
 }
 
-const PatientForm = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [patiens, setPatients] = useState<NewPatient[]>([]);
+const PatientForm = ({ createPatient, setIsOpen }: Props) => {
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -34,17 +31,18 @@ const PatientForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const newPatient:NewPatient = {
-      id: crypto.randomUUID(),
-      ...form,
+    const newPatient: NewPatient = {
+      firstName: form.firstName,
+      lastName: form.lastName,
+      status: form.status as PatientStatus,
     };
 
-    setPatients((prev) => [newPatient, ...prev]);
+    createPatient(newPatient)
 
     setForm({
       firstName: "",
       lastName: "",
-      status: "waiting",
+      status: "onwaiting",
     });
     setIsOpen(false);
   };

@@ -1,6 +1,6 @@
 "use client";
-import { useMemo } from "react";
-import type {  DisplayPatient, PatientStatus } from "@/types/patient";
+import { useMemo, useState } from "react";
+import type {  DisplayPatient, PatientStatus, NewPatient, Patient } from "@/types/patient";
 import { generatePatientId, generateFullname, calculateAge, generateAgeText } from "@/utilities/data";
 import { useStats } from "./useStats";
 import { useAlerts } from "./useAlerts";
@@ -13,16 +13,52 @@ type Props = {
     sortDirection: "asc" | "desc";
 }
 
-export default function usePatients({ searchText, statusFilter, sortBy, sortDirection }: Props) {
+const usePatients = ({ searchText, statusFilter, sortBy, sortDirection }: Props) => {
+  const { data, isLoading, error } = usePatientsData();
+  const [localPatients, setLocalPatients] = useState<Patient[]>([]);
 
-   const { data, isLoading, error } = usePatientsData();
+  const generateId = (): number => {
+    return Number(`${Date.now().toString().slice(-3)}${Math.floor(Math.random() * 10)}`);
+  };
 
-  const rawPatientsData = useMemo(() => {
-    return data ?? [];
-  }, [data]);
+  const createPatient = (input: NewPatient) => {
+    const newPatient: Patient = {
+      id: generateId(),
+      first_name: input.firstName,
+      last_name: input.lastName,
+
+      middle_name: null,
+      birthday: "",
+      gender: "unknown",
+      bloodType: "Unknown",
+      status: input.status,
+
+      phone: "",
+      email:  "",
+      address: "",
+
+      lastVisit: null,
+      nextAppointment: null,
+      doctor: null,
+
+      condition: "",
+      allergies: null,
+      medications: null,
+    };
+    setLocalPatients((prev) => [newPatient, ...prev]);
+  };
+
+  const mergedPatients = useMemo(() => {
+    const map = new Map<number, Patient>();
+
+    (data ?? []).forEach((p) => map.set(p.id, p));
+    localPatients.forEach((p) => map.set(p.id, p));
+
+    return Array.from(map.values());
+  }, [data, localPatients]);
 
   const displayPatients = useMemo(() => {
-    return rawPatientsData
+    return mergedPatients
       .map((p) => ({
         ...p, 
         middle_name: p.middle_name ?? "",
@@ -34,7 +70,7 @@ export default function usePatients({ searchText, statusFilter, sortBy, sortDire
         age: calculateAge(p.birthday),
         ageText: generateAgeText(p.birthday),
       }));
-  }, [rawPatientsData]);
+  }, [mergedPatients]);
 
   const searchedPatients = useMemo(() => {
     return displayPatients
@@ -94,7 +130,7 @@ export default function usePatients({ searchText, statusFilter, sortBy, sortDire
   const { statusStats} = useStats(sortedPatients);
 
   const patients = sortedPatients;
-  const totalPatients = rawPatientsData.length;
+  const totalPatients = mergedPatients.length;
   const filteredCount = patients.length;
 
   return {
@@ -105,5 +141,8 @@ export default function usePatients({ searchText, statusFilter, sortBy, sortDire
     statusStats,
     loading: isLoading,
     error,
+    createPatient,
   };
 };
+
+export default usePatients;

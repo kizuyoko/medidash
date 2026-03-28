@@ -32,3 +32,9 @@ export type DisplayPatient = Patient & {
 };
 
 export type DisplayPatients = DisplayPatient[];
+
+export type NewPatient = {
+  firstName: string;
+  lastName: string;
+  status: PatientStatus;
+};

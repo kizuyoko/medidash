@@ -7,6 +7,7 @@ import SearchBar from "./SearchBar";
 import { useState } from "react";
 import type { PatientStatus } from "@/types/patient";
 import PatientForm from "./patient/PatientForm";
+import { NewPatient } from "@/types/patient";
 
 type Props = {
   searchText: string;
@@ -14,9 +15,10 @@ type Props = {
   onSearchChange: (value: string) => void;
   totalPatients: number;
   filteredPatients?: number;
+  createPatient: (data: NewPatient) => void;
 }
 
-const Header = ({ searchText, statusFilter, onSearchChange, totalPatients, filteredPatients }: Props) => {
+const Header = ({ searchText, statusFilter, onSearchChange, totalPatients, filteredPatients, createPatient }: Props) => {
     const [open, setOpen] = useState(false);
     const statusLabels: Record<PatientStatus, string> = {
         waiting: 'Waiting',
@@ -62,7 +64,10 @@ const Header = ({ searchText, statusFilter, onSearchChange, totalPatients, filte
                 onClose={() => setOpen(false)}
                 title="Create a patient"
             >
-                <PatientForm />
+                <PatientForm 
+                    setIsOpen={setOpen} 
+                    createPatient={createPatient}
+                />
             </Modal>
         </header>  
     )

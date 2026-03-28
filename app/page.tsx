@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
 import PatientsTable from "@/components/patient/PatientsTable";
-import type { DisplayPatient, PatientStatus } from "@/types/patient";
+import type { DisplayPatient, PatientStatus, NewPatient } from "@/types/patient";
 import Modal from "@/components/ui/Modal";
 import PatientDetailModal from "@/components/patient/PatientDetailModal";
 import usePatients from "@/hooks/usePatients";
@@ -23,7 +23,8 @@ export default function Home() {
   const [sortBy, setSortBy] = useState<keyof DisplayPatient | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [patiens, setPatients] = useState<NewPatient[]>([]);
+ 
   //const queryClient = useQueryClient();
   
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function Home() {
       setSelectedPatient(patient);
   }
 
-  const { patients, totalPatients, filteredCount, alertsList, statusStats, loading, error } = usePatients({
+  const { patients, totalPatients, filteredCount, alertsList, statusStats, loading, error, createPatient } = usePatients({
     searchText: debouncedSearchText,
     statusFilter,
     sortBy,
@@ -91,6 +92,7 @@ export default function Home() {
           onSearchChange={setSearchText}
           totalPatients={totalPatients}
           filteredPatients={filteredCount}
+          createPatient={createPatient}
         />
         { alertsList.some(alert => alert.count > 0) && (
             <AlertsList alerts={alertsList} />
