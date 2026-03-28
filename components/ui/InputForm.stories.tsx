@@ -7,7 +7,7 @@ const meta: Meta<typeof InputForm> = {
   component: InputForm,
   args: {
     id: "firstName",
-    name: "firstName",
+    label: "First name",
     type: "text",
     value: "",
     onChange: () => {},
@@ -43,7 +43,7 @@ export const Primary: Story = {};
 export const Select: Story = {
   args: {
     id: "status",
-    name: "status",
+    label: "Status",
     type: "select",
     value: "waiting",
   },
@@ -55,7 +55,7 @@ export const Select: Story = {
 export const Textarea: Story = {
   args: {
     id: "note",
-    name: "note",
+    label: "Note",
     type: "textarea",
     value: "",
   },

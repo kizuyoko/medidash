@@ -1,36 +1,36 @@
 type Props = {
   id: string;
-  name: string;
+  label?: string;
   type?: "text" | "select" | "textarea";
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
 };
 
-const InputForm = ({ id, name, type="text", value, onChange }:Props) => {
+const InputForm = ({ id, label, type="text", value, onChange }:Props) => {
   return (
     <div className="flex flex-col mb-1">
       <label
         htmlFor={id}
-      >{name}</label>
+      >{label}</label>
       {type === "text" && (
         <input
           id={id}
-          name={name}
+          name={id}
           value={value}
           onChange={onChange}
           className="input-form"
-          placeholder={name}
+          placeholder={label}
         />
       )}
 
       {type === "textarea" && (
         <textarea
           id={id}
-          name={name}
+          name={id}
           value={value}
           onChange={onChange}
           className="input-form"
-          placeholder={name}
+          placeholder={label}
         />
       )}
 
@@ -38,7 +38,7 @@ const InputForm = ({ id, name, type="text", value, onChange }:Props) => {
         <div className="relative w-full">
           <select
             id={id}
-            name={name}
+            name={id}
             value={value}
             onChange={onChange}
             className="input-form appearance-none pr-10 w-full"
