@@ -18,10 +18,12 @@ const usePatients = ({ searchText, statusFilter, sortBy, sortDirection }: Props)
   const [localPatients, setLocalPatients] = useState<Patient[]>([]);
 
   const generateId = (): number => {
-    return Number(`${Date.now().toString().slice(-3)}${Math.floor(Math.random() * 10)}`);
+    return Math.floor(1000 + Math.random() * 9000);
   };
 
   const createPatient = (input: NewPatient) => {
+    if (!input.firstName || !input.lastName) return;
+
     const newPatient: Patient = {
       id: generateId(),
       first_name: input.firstName,
@@ -30,7 +32,7 @@ const usePatients = ({ searchText, statusFilter, sortBy, sortDirection }: Props)
       middle_name: null,
       birthday: "",
       gender: "unknown",
-      bloodType: "Unknown",
+      bloodType: "unknown",
       status: input.status,
 
       phone: "",
@@ -48,6 +50,7 @@ const usePatients = ({ searchText, statusFilter, sortBy, sortDirection }: Props)
     setLocalPatients((prev) => [newPatient, ...prev]);
   };
 
+  // Merge server and local patients, giving precedence to local changes
   const mergedPatients = useMemo(() => {
     const map = new Map<number, Patient>();
 
