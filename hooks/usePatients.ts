@@ -50,6 +50,37 @@ const usePatients = ({ searchText, statusFilter, sortBy, sortDirection }: Props)
     setLocalPatients((prev) => [newPatient, ...prev]);
   };
 
+  const updatePatientStatus = (id: number) => {
+    setLocalPatients((prev) => {
+      const exists = prev.find(p => p.id === id);
+      
+      if (exists) {
+        return prev.map((p) =>
+          p.id === id
+            ? { ...p, status: getNextStatus(p.status) }
+            : p
+        );
+      }
+
+      const target = data?.find((p) => p.id === id);
+      if (!target) return prev;
+
+      return [
+        { ...target, status: getNextStatus(target.status) },
+        ...prev,
+      ];
+    });
+  };
+
+  const getNextStatus = (currentStatus: Patient["status"]): Patient["status"] => {
+    switch (currentStatus) {
+        case "waiting": return "in_consult";  
+        case "in_consult": return "done";
+        case "done": return "cancelled";
+        case "cancelled": return "waiting";
+    }       
+  };
+
   // Merge server and local patients, giving precedence to local changes
   const mergedPatients = useMemo(() => {
     const map = new Map<number, Patient>();
@@ -145,6 +176,7 @@ const usePatients = ({ searchText, statusFilter, sortBy, sortDirection }: Props)
     loading: isLoading,
     error,
     createPatient,
+    updatePatientStatus
   };
 };
 

@@ -6,10 +6,11 @@ import PatientMedicalInfoSection from "./PatientMedicalInfoSection";
 import PatientVisitHistorySection from "./PatientVisitHistorySection";
 
 type PatientProps = {
-    patient: DisplayPatient
+    patient: DisplayPatient;
+    onStatusClick: (id: number) => void;
 }
 
-const PatientDetailModal = ({ patient }: PatientProps) => {  
+const PatientDetailModal = ({ patient, onStatusClick }: PatientProps) => {  
 
     return (
         <section className="patient-modal">
@@ -19,7 +20,10 @@ const PatientDetailModal = ({ patient }: PatientProps) => {
                     {patient.patientId}
                 </span>
             </Heading>
-            <PatientBasicInfoSection patient={patient} />
+            <PatientBasicInfoSection 
+                patient={patient} 
+                onStatusClick={onStatusClick}
+            />
             <PatientContactInfoSection patient={patient} />
             <PatientMedicalInfoSection patient={patient} />
             <PatientVisitHistorySection patient={patient} />           

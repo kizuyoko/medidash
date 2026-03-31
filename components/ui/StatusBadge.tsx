@@ -1,11 +1,13 @@
-import type { PatientStatus } from "@/types/patient";
+import type { PatientStatus, Patient } from "@/types/patient";
 import { generateStatusLabels } from '@/utilities/data';
 
 type StatusBadgeProps = {
   status: PatientStatus;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const baseClasses = "inline-flex px-3 py-1 text-sm font-medium rounded-full justify-center items-center";
+
 const statusClasses = {
     waiting: " bg-(--color-bg-status-waiting) text-(--color-text-status-waiting)",
     in_consult: " bg-(--color-bg-status-in_consult) text-(--color-text-status-in_consult)",
@@ -13,14 +15,17 @@ const statusClasses = {
     cancelled: " bg-(--color-bg-status-cancelled) text-(--color-text-status-cancelled)",
 }
 
-
-function StatusBadge({ status }: StatusBadgeProps) {
+function StatusBadge({ status, onClick }: StatusBadgeProps) {
+    const Tag = onClick ? "button" : "span";    
+    const cursorClass = onClick ? "cursor-pointer" : "cursor-default";
+    const className = `${baseClasses} ${cursorClass} ${statusClasses[status]}`;
     return (
-        <span
-            className={`${baseClasses} ${statusClasses[status]}`}
+        <Tag    
+            className={className}
+            onClick={onClick}
         >
             {generateStatusLabels[status]}
-        </span>
+        </Tag>
     );
 }
 

@@ -4,15 +4,16 @@ import type { Patient } from "../../types/patient";
 import { calculateAge } from "../../utilities/data";
 
 type PatientProps = {
-    patient: Patient
+    patient: Patient;
+    onStatusClick: (id: number) => void;
 }
 
-const PatientBasicInfoSection = ({ patient }: PatientProps) => {
+const PatientBasicInfoSection = ({ patient, onStatusClick }: PatientProps) => {
     const age = calculateAge(patient.birthday);
     const ageText = age === 0 
         ? 'Less than 1 year' 
         : `${age} year${age === 1 ? '' : 's'}`;
-
+    
     return (
         <section>
             <Heading level={3}>Basic Information</Heading>
@@ -33,7 +34,13 @@ const PatientBasicInfoSection = ({ patient }: PatientProps) => {
                 </div>
                 <div className="card">
                     <p className="card-label">Status</p>
-                    <StatusBadge status={patient.status} />
+                    <StatusBadge 
+                        status={patient.status}
+                        onClick={(e: React.MouseEvent) => {
+                            e.stopPropagation();
+                            onStatusClick(patient.id);
+                        }}
+                    />
                 </div>
             </div>
         </section>

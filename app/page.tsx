@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
 import PatientsTable from "@/components/patient/PatientsTable";
-import type { DisplayPatient, PatientStatus, NewPatient } from "@/types/patient";
+import type { DisplayPatient, PatientStatus } from "@/types/patient";
 import Modal from "@/components/ui/Modal";
 import PatientDetailModal from "@/components/patient/PatientDetailModal";
 import usePatients from "@/hooks/usePatients";
@@ -16,14 +16,13 @@ import Pagination from "@/components/ui/Pagination";
 import Heading from "@/components/ui/Heading";
 
 export default function Home() {
-  const [selectedPatient, setSelectedPatient] = useState<DisplayPatient | null>(null);
   const [searchText, setSearchText] = useState("");
   const [debouncedSearchText, setDebouncedSearchText] = useState("");
   const [statusFilter, setStatusFilter] = useState<PatientStatus | null>(null);
   const [sortBy, setSortBy] = useState<keyof DisplayPatient | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [currentPage, setCurrentPage] = useState(1);
-  const [patiens, setPatients] = useState<NewPatient[]>([]);
+  const [selectedPatientId, setSelectedPatientId] = useState<number | null>(null);
  
   //const queryClient = useQueryClient();
   
@@ -36,15 +35,19 @@ export default function Home() {
   }, [searchText]);
 
   const setSelectedPatientHandlar = (patient: DisplayPatient) => {
-      setSelectedPatient(patient);
+      setSelectedPatientId(patient.id);
   }
 
-  const { patients, totalPatients, filteredCount, alertsList, statusStats, loading, error, createPatient } = usePatients({
+  const { patients, totalPatients, filteredCount, alertsList, statusStats, loading, error, createPatient, updatePatientStatus } = usePatients({
     searchText: debouncedSearchText,
     statusFilter,
     sortBy,
     sortDirection,
    });
+
+  const selectedPatient = patients.find(
+    (p) => p.id === selectedPatientId
+  );
 
   /* Pagenation */
   const pageSize = 10;
@@ -116,9 +119,12 @@ export default function Home() {
         { selectedPatient && (
             <Modal
               isOpen={true} 
-              onClose={() => setSelectedPatient(null)}
+              onClose={() => setSelectedPatientId(null)}
             >
-              <PatientDetailModal patient={selectedPatient} />
+              <PatientDetailModal 
+                patient={selectedPatient} 
+                onStatusClick={updatePatientStatus}
+              />
             </Modal>
         )}
         { totalPages > 1 && (
