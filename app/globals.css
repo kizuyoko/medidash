@@ -53,6 +53,10 @@
   /* Disabled */
   --color-btn-disabled: theme(colors.gray.300);
   --color-btn-disabled-text: theme(colors.gray.400);
+    /* Delete */
+  --color-btn-delete: theme(colors.red.600);
+  --color-btn-delete-hover: theme(colors.red.800);
+  --color-btn-delete-text: theme(colors.white);
 
 /* Alert */
   --color-bg-alert: theme(colors.red.50); 

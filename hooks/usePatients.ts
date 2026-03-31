@@ -21,6 +21,14 @@ const usePatients = ({ searchText, statusFilter, sortBy, sortDirection }: Props)
     return Math.floor(1000 + Math.random() * 9000);
   };
 
+  const deletePatient = (id: number) => {
+    setLocalPatients((prev) => {
+      const exists = prev.find(p => p.id === id);
+      if (!exists) return prev;
+      return prev.filter(p => p.id !== id);
+    });
+  };
+
   const createPatient = (input: NewPatient) => {
     if (!input.firstName || !input.lastName) return;
 
@@ -176,7 +184,8 @@ const usePatients = ({ searchText, statusFilter, sortBy, sortDirection }: Props)
     loading: isLoading,
     error,
     createPatient,
-    updatePatientStatus
+    updatePatientStatus,
+    deletePatient,
   };
 };
 

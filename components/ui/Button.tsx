@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, ForwardedRef } from "react";
 import { forwardRef } from "react";
 
 type ButtonProps = {
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "delete";
   disabled?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -28,6 +28,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     secondary: disabled
       ? disabledClasses
       : "bg-[var(--color-btn-secondary)] text-[var(--color-btn-secondary-text)] hover:bg-[var(--color-btn-secondary-hover)]  cursor-pointer",
+    delete: disabled
+      ? disabledClasses
+      : "bg-[var(--color-btn-delete)] text-[var(--color-btn-delete-text)] hover:bg-[var(--color-btn-delete-hover)]  cursor-pointer",  
   };
 
   return (

@@ -56,7 +56,10 @@ const Header = ({ searchText, statusFilter, onSearchChange, totalPatients, filte
                     value={searchText}
                     onChange={onSearchChange}
                 />
-                <Button onClick={() => setOpen(true)}>New</Button>
+                <Button 
+                    onClick={() => setOpen(true)}
+                    variant="secondary"
+                >New</Button>
             </div>
           </div>
           <Modal

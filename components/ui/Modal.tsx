@@ -10,10 +10,12 @@ type ModalProps = {
   onClose: () => void;
   title?: string;
   children: ReactNode;
+  hasDeleteButton?: boolean;
+  onClickDelete?: () => void;
 };
 
 const Modal = ({
-  isOpen, onClose, title, children
+  isOpen, onClose, title, children, hasDeleteButton = false, onClickDelete
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -68,7 +70,19 @@ const Modal = ({
           {children}
         </div>
         
-        <div className="flex justify-end">
+        <div className="flex gap-4 justify-end">
+          {
+            hasDeleteButton && onClickDelete && (
+              <Button
+                variant="delete"
+                onClick={onClickDelete}
+                aria-label="Delete patient"
+                ref={closeButtonRef}
+              >
+                Delete
+              </Button>
+            )
+          }
           <Button
             onClick={onClose}
             aria-label="Close dialog"

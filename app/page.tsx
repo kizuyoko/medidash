@@ -38,7 +38,7 @@ export default function Home() {
       setSelectedPatientId(patient.id);
   }
 
-  const { patients, totalPatients, filteredCount, alertsList, statusStats, loading, error, createPatient, updatePatientStatus } = usePatients({
+  const { patients, totalPatients, filteredCount, alertsList, statusStats, loading, error, createPatient, updatePatientStatus, deletePatient } = usePatients({
     searchText: debouncedSearchText,
     statusFilter,
     sortBy,
@@ -120,6 +120,8 @@ export default function Home() {
             <Modal
               isOpen={true} 
               onClose={() => setSelectedPatientId(null)}
+              hasDeleteButton={true}
+              onClickDelete={() => deletePatient(selectedPatient.id)}
             >
               <PatientDetailModal 
                 patient={selectedPatient} 

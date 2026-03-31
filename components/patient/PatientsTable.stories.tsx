@@ -43,8 +43,13 @@ export const WithModal: Story = {
             <Modal
                 isOpen={true} 
                 onClose={() => setSelectedPatient(null)}
+                hasDeleteButton={true}
+                onClickDelete={() => {alert("delete")}}
             >
-                <PatientDetailModal patient={selectedPatient} />
+                <PatientDetailModal 
+                  patient={selectedPatient} 
+                  onStatusClick={(id) => {alert(`Status clicked for patient ${id}`)}}
+                />
             </Modal>
         )}
       </>
