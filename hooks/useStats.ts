@@ -15,7 +15,7 @@ export const useStats = (patients: DisplayPatients) => {
       unknown: 0,
     };
     const bloodStats = {
-      'A+': 0, 'A-': 0, 'B+': 0, 'B-': 0, 'O+': 0, 'O-': 0, 'AB+': 0, 'AB-': 0,  Unknown: 0,
+      'A+': 0, 'A-': 0, 'B+': 0, 'B-': 0, 'O+': 0, 'O-': 0, 'AB+': 0, 'AB-': 0,  unknown: 0,
     };
 
     patients.forEach(p => {
