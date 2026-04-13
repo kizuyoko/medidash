@@ -1,6 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
-import type {  DisplayPatient, PatientStatus, NewPatient, Patient } from "@/types/patient";
+import type {  DisplayPatient, PatientStatus, NewPatient, Patient, LocalOverride, PatientWithMeta } from "@/types/patient";
 import { generatePatientId, generateFullname, calculateAge, generateAgeText } from "@/utilities/data";
 import { useStats } from "./useStats";
 import { useAlerts } from "./useAlerts";
@@ -15,18 +15,15 @@ type Props = {
 
 const usePatients = ({ searchText, statusFilter, sortBy, sortDirection }: Props) => {
   const { data, isLoading, error } = usePatientsData();
-  const [localPatients, setLocalPatients] = useState<Patient[]>([]);
+  const [localPatients, setLocalPatients] = useState<PatientWithMeta[]>([]);
+  const [deletedPatientIds, setDeletedPatientIds] = useState<number[]>([]);
 
   const generateId = (): number => {
     return Math.floor(1000 + Math.random() * 9000);
   };
 
   const deletePatient = (id: number) => {
-    setLocalPatients((prev) => {
-      const exists = prev.find(p => p.id === id);
-      if (!exists) return prev;
-      return prev.filter(p => p.id !== id);
-    });
+    setDeletedPatientIds(prev => [...prev, id]);
   };
 
   const createPatient = (input: NewPatient) => {
@@ -96,8 +93,9 @@ const usePatients = ({ searchText, statusFilter, sortBy, sortDirection }: Props)
     (data ?? []).forEach((p) => map.set(p.id, p));
     localPatients.forEach((p) => map.set(p.id, p));
 
-    return Array.from(map.values());
-  }, [data, localPatients]);
+    return Array.from(map.values())
+      .filter(p => !deletedPatientIds.includes(p.id));
+  }, [data, localPatients, deletedPatientIds]);
 
   const displayPatients = useMemo(() => {
     return mergedPatients

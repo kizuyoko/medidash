@@ -38,3 +38,9 @@ export type NewPatient = {
   lastName: string;
   status: PatientStatus;
 };
+
+export type LocalOverride = Partial<Pick<Patient, "status">> & { _deleted?: boolean };
+
+export type PatientWithMeta = Patient & {
+  _deleted?: boolean;
+};
